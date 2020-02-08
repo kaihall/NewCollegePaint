@@ -15,44 +15,58 @@ public class Buttons {
   
   float wid = width/12;
   float hite = height/6;
-  
 
   void display(){
     
+    // Make coordinates start from the #center# of the images, instead of the upper left corner
+    imageMode(CENTER);
+    
     pencil = loadImage("pencil.png");
-    image(pencil, width*.75,height*1/2000, wid, hite);
+    image(pencil, width*.8,height/12, wid, hite);
+    ToolTip pencil = new ToolTip("Pencil tool!", width*.8, height/12, wid, hite);
+    pencil.makeText();    
     
     line = loadImage("line.png");
-    image(line, width*.83, height*1/2000, wid, hite);
+    image(line, width*.875, height*1/12, wid, hite);
+    ToolTip line = new ToolTip("Line tool!", width*.875, height*1/12, wid*.7, hite);
+    line.makeText();
     
-    polygon = loadImage("polygon.png");
-    image(polygon, width*.92, height*1/2000, wid, hite);
-    
+    curve = loadImage("curve.png");
+    image(curve, width*.95, height*1/12, wid, hite);
+    ToolTip curve = new ToolTip("Curve tool!", width*.95, height*1/12, wid*.7, hite);
+    curve.makeText();   
     
     rect = loadImage("rect.png");
-    image(rect, width*.75, height*.17, wid, hite);
-    
-    
-    rotate = loadImage("rotate.png");
-    image(rotate, width*.83, height*.17, wid, hite);
-    
-    
-    save = loadImage("save.png");
-    image(save, width*.92, height*.17, wid, hite);
-    
-    
-    scale = loadImage("scale.png");
-    image(scale, width*.746, height*1/3, wid, hite);
-    
-    
-    select = loadImage("select.png");
-    image(select, width*.83, height*1/3, wid, hite);
-    
+    image(rect, width*.8, height/4, wid, hite);
+    ToolTip rect = new ToolTip("Rectangle tool!", width*.8, height/4, wid, hite);
+    rect.makeText(); 
     
     circle = loadImage("circle.png");
-    image(circle, width*.92, height*1/3, wid, hite);
-    curve = loadImage("curve.png");
+    image(circle, width*.875, height/4, wid, hite);
+    ToolTip circle = new ToolTip("Circle tool!", width*.875, height/4, wid, hite);
+    circle.makeText();
+    
+    polygon = loadImage("polygon.png");
+    image(polygon, width*.95, height*.24, wid, hite);
+    ToolTip polygon = new ToolTip("Save!", width*.95, height*.24, wid, hite);
+    polygon.makeText();
+    
+    select = loadImage("select.png");
+    image(select, width*.8, height*.4, wid, hite);
+    ToolTip select = new ToolTip("Select tool!", width*.875, height*.4, wid, hite);
+    select.makeText();
+    
+    scale = loadImage("scale.png");
+    image(scale, width*.875, height*.4, wid, hite);
+    ToolTip scale = new ToolTip("Scale tool!", width*.8, height*.4, wid, hite);
+    scale.makeText();
+    
+    save = loadImage("save.png");
+    image(save, width*.95, height*.4, wid, hite);
+    ToolTip save = new ToolTip("Circle tool!", width*.95, height*.4, wid, hite);
+    save.makeText();
+    
     group = loadImage("group.png");
     
-}
+  }
 }

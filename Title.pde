@@ -1,8 +1,9 @@
-// Greet
+
+// The title page for NuPaint!
 
 public class Title {
 
-  String message = "Welcome to NCF Paint!";
+  String message = "Welcome to NuPaint!";
   int textX = width/3;
   int textY = height/50;
   float alignX = width*0.375;
@@ -10,8 +11,7 @@ public class Title {
   
   // void makeTextBox(){
   
-  void showTitle(){
-    
+  void showTitle(){ 
     textSize(46);
     textAlign(int(alignX), TOP);
     fill(0,0,255);
