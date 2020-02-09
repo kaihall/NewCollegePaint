@@ -3,10 +3,10 @@ ArrayList<Object> thingsToDraw = new ArrayList<Object>(); // Generic List that f
 void setup(){
   fullScreen();
   background(255);
+  frameRate(1000);
 }
 
 void draw(){
-  background(255,255,255);
   if (thingsToDraw != null) {
     for (Object o : thingsToDraw) {
       o.draw();
@@ -20,12 +20,14 @@ void draw(){
   button.display();
   Title greeting = new Title();
   greeting.showTitle();
+  PencilTool tool = new PencilTool();
+  tool.sketch();
 }
 
 // pressing any mouse button will make a circle appear at that point
-void mousePressed() {
+/*void mousePressed() {
   objects currType = objects.circle;
-  int[] Fill = {100,100,0};
+  int[] Fill = {100,60,0};
   int[] Color = {100,100,0};
   int[] args = {mouseX, mouseY, width/8};
   

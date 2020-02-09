@@ -18,13 +18,13 @@ public class Buttons {
 
   void display(){
     
-    // Make coordinates start from the #center# of the images, instead of the upper left corner
+    // Make coordinates start from the #center# of the images
     imageMode(CENTER);
     
     pencil = loadImage("pencil.png");
     image(pencil, width*.8,height/12, wid, hite);
     ToolTip pencil = new ToolTip("Pencil tool!", width*.8, height/12, wid, hite);
-    pencil.makeText();    
+    pencil.makeText();
     
     line = loadImage("line.png");
     image(line, width*.875, height*1/12, wid, hite);
