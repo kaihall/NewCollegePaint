@@ -35,8 +35,12 @@ void mousePressed() {
   thingsToDraw.add(dummyObject);
 }
 
-// This is just to show that things are grouped
-void keyPressed() {
+
+
+
+// Objects are grouped
+
+/*void keyPressed() {
   int jumpVal = 10;
   if (thingsToDraw != null) {
     if (key == CODED) {
@@ -61,5 +65,6 @@ void keyPressed() {
         }
       }      
     }
-  }
-}
+  */
+//}
+//}

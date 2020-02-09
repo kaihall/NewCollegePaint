@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.LinkedList;
 
 public class Buttons {
   PImage pencil;
@@ -48,7 +48,7 @@ public class Buttons {
     
     polygon = loadImage("polygon.png");
     image(polygon, width*.95, height*.24, wid, hite);
-    ToolTip polygon = new ToolTip("Save!", width*.95, height*.24, wid, hite);
+    ToolTip polygon = new ToolTip("Polygon tool!", width*.95, height*.24, wid, hite);
     polygon.makeText();
     
     select = loadImage("select.png");
@@ -63,7 +63,7 @@ public class Buttons {
     
     save = loadImage("save.png");
     image(save, width*.95, height*.4, wid, hite);
-    ToolTip save = new ToolTip("Circle tool!", width*.95, height*.4, wid, hite);
+    ToolTip save = new ToolTip("Save tool!", width*.95, height*.4, wid, hite);
     save.makeText();
     
     group = loadImage("group.png");
