@@ -87,4 +87,30 @@ void keyPressed() {
   else if (key == 'r') {
     rectTool.drawLastRectangle();
   }
+  
+  else if (key == '1') {
+    switchTool(pencilTool);
+  }
+  
+  else if (key == '2') {
+    switchTool(lineTool);
+  }
+  
+  else if (key == '3') {
+    //switchTool(curveTool);
+  }
+  
+  else if (key == '4') {
+    switchTool(rectTool);
+  }
+  
+  else if (key == '5') {
+    switchTool(circleTool);
+  }
+}
+
+void switchTool(Tool t) {
+  currentTool.setActive(false);
+  currentTool = t;
+  t.setActive(true);
 }

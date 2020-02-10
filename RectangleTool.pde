@@ -26,6 +26,7 @@ public class RectangleTool extends Tool {
       if (isActive) {
         if (drawing) {
           drawing = false;
+          last = working;
         }
         else {
           drawing = true;
