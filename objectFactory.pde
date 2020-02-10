@@ -13,7 +13,7 @@ This will also hold all of the basic types of shapes Processing can make
 */
 
 enum objects {
-  circle, square, pixel, rectangle, line, ellipse, triangle
+  circle, square, pixel, rectangle, line, ellipse, triangle, curve
 }
 
 public class objectFactory {
@@ -51,7 +51,11 @@ public class objectFactory {
        case triangle:
          println("Triangle");
          retVal = new triangle(args[0], args[1], Fill, Color, args[2], args[3], args[4], args[5]);
-         break;  
+         break; 
+       case curve:
+         println("Curve");
+         retVal = new curve(args,Color);
+         break;
        default:
          println("Something went wrong, it appears that you passed a shape that does not exists");
          retVal = null;
@@ -266,4 +270,31 @@ public class triangle extends Object {
   
   //public void setColor() {}
   
+}
+
+public class curve extends Object {
+  int[] xPoints;
+  int[] yPoints;
+  
+  public curve(int[] args, color stroke) {
+    Color = stroke;
+    
+    xPoints = new int[args.length/2];
+    yPoints = new int[args.length/2];
+    
+    for (int i = 0; i < args.length; i++) {
+      if (i%2 == 0) xPoints[i/2] = args[i];
+      else yPoints[i/2] = args[i];
+    }
+  }
+  
+  public void draw(){
+    prepColor();
+    noFill();
+    beginShape();
+    for (int i = 0; i < min(xPoints.length,yPoints.length); i++) {
+      curveVertex(xPoints[i],yPoints[i]);
+    }
+    endShape();
+  }
 }

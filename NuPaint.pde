@@ -1,9 +1,11 @@
 ArrayList<Object> thingsToDraw = new ArrayList<Object>(); // Generic List that functions as a Grouped set of shapes
+ArrayList<Object> tempDraw = new ArrayList<Object>(); //For temporary objects (ex. pencil drawing used for curve tool). Please clear after use.
 Tool currentTool;
 PencilTool pencilTool = new PencilTool();
 LineTool lineTool = new LineTool();
 RectangleTool rectTool = new RectangleTool();
 CircleTool circleTool = new CircleTool();
+CurveTool curveTool = new CurveTool();
 
 void setup(){
   fullScreen();
@@ -18,6 +20,9 @@ void draw(){
   
   if (thingsToDraw != null) {
     for (Object o : thingsToDraw) {
+      o.draw();
+    }
+    for (Object o : tempDraw) {
       o.draw();
     }
   }
@@ -97,7 +102,7 @@ void keyPressed() {
   }
   
   else if (key == '3') {
-    //switchTool(curveTool);
+    switchTool(curveTool);
   }
   
   else if (key == '4') {
