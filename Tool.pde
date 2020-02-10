@@ -12,6 +12,8 @@ public abstract class Tool {
     fill = color(0);
   }
   
+  public abstract void sketch();
+  
   public void setActive(boolean val) {
     isActive = val;
   }

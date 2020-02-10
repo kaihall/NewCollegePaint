@@ -1,9 +1,14 @@
 ArrayList<Object> thingsToDraw = new ArrayList<Object>(); // Generic List that functions as a Grouped set of shapes
+Tool currentTool;
 
 void setup(){
   fullScreen();
   background(255);
   frameRate(1000);
+  PencilTool pencilTool = new PencilTool();
+  LineTool lineTool = new LineTool();
+  currentTool = lineTool;
+  lineTool.setActive(true);
 }
 
 void draw(){
@@ -20,8 +25,7 @@ void draw(){
   button.display();
   Title greeting = new Title();
   greeting.showTitle();
-  PencilTool tool = new PencilTool();
-  tool.sketch();
+  currentTool.sketch();
 }
 
 // pressing any mouse button will make a circle appear at that point

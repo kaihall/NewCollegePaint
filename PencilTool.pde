@@ -11,12 +11,14 @@ public class PencilTool extends Tool {
   
   public PencilTool(){
     super();
+    args = new int[2];
   }  
   
   void sketch(){
     if(mousePressed){
       if(isActive){
-        args = { mouseX, mouseY };
+        args[0] = mouseX;
+        args[1] = mouseY;
         thingsToDraw.add(of.createObject(objects.pixel,fill,stroke,args));
      }
     }
