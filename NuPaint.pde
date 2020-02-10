@@ -11,8 +11,8 @@ void setup(){
   fullScreen();
   background(255);
   frameRate(60);
-  currentTool = circleTool;
-  circleTool.setActive(true);
+  currentTool = pencilTool;
+  //circleTool.setActive(true);
 }
 
 void draw(){

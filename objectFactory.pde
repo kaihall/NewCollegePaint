@@ -273,18 +273,18 @@ public class triangle extends Object {
 }
 
 public class curve extends Object {
-  int[] xPoints;
-  int[] yPoints;
+  ArrayList<Integer> xPoints;
+  ArrayList<Integer> yPoints;
   
   public curve(int[] args, color stroke) {
     Color = stroke;
     
-    xPoints = new int[args.length/2];
-    yPoints = new int[args.length/2];
+    xPoints = new ArrayList<Integer>();
+    yPoints =new ArrayList<Integer>();
     
     for (int i = 0; i < args.length; i++) {
-      if (i%2 == 0) xPoints[i/2] = args[i];
-      else yPoints[i/2] = args[i];
+      if (i%2 == 0) xPoints.add(args[i]);
+      else yPoints.add(args[i]);
     }
   }
   
@@ -292,9 +292,11 @@ public class curve extends Object {
     prepColor();
     noFill();
     beginShape();
-    for (int i = 0; i < min(xPoints.length,yPoints.length); i++) {
-      curveVertex(xPoints[i],yPoints[i]);
+    curveVertex(xPoints.get(0),yPoints.get(0));
+    for (int i = 0; i < min(xPoints.size(),yPoints.size()); i++) {
+      curveVertex(xPoints.get(i),yPoints.get(i));
     }
+    curveVertex(xPoints.get(xPoints.size()-1), yPoints.get(yPoints.size()-1));
     endShape();
   }
 }
