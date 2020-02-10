@@ -126,6 +126,7 @@ public class rectangle extends Object {
  
   public void draw() {
     prepColor();
+    rectMode(CORNER);
     rect(x, y, w, h);
   }
   

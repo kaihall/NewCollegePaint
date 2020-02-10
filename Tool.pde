@@ -9,7 +9,7 @@ public abstract class Tool {
     isActive = false;
     of = new objectFactory();
     stroke = color(0);
-    fill = color(0);
+    fill = color(255);
   }
   
   public abstract void sketch();

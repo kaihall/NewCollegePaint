@@ -15,7 +15,7 @@ public class PencilTool extends Tool {
   }  
   
   void sketch(){
-    if(mousePressed){
+    if(mouseX < width*.75 && mousePressed){
       if(isActive){
         args[0] = mouseX;
         args[1] = mouseY;

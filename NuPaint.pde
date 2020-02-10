@@ -7,8 +7,9 @@ void setup(){
   frameRate(60);
   PencilTool pencilTool = new PencilTool();
   LineTool lineTool = new LineTool();
-  currentTool = lineTool;
-  lineTool.setActive(true);
+  RectangleTool rectTool = new RectangleTool();
+  currentTool = rectTool;
+  rectTool.setActive(true);
 }
 
 void draw(){
