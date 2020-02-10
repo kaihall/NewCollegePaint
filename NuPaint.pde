@@ -8,8 +8,9 @@ void setup(){
   PencilTool pencilTool = new PencilTool();
   LineTool lineTool = new LineTool();
   RectangleTool rectTool = new RectangleTool();
-  currentTool = rectTool;
-  rectTool.setActive(true);
+  CircleTool circleTool = new CircleTool();
+  currentTool = circleTool;
+  circleTool.setActive(true);
 }
 
 void draw(){
