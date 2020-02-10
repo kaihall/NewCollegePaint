@@ -4,7 +4,7 @@ Tool currentTool;
 void setup(){
   fullScreen();
   background(255);
-  frameRate(1000);
+  frameRate(60);
   PencilTool pencilTool = new PencilTool();
   LineTool lineTool = new LineTool();
   currentTool = lineTool;
@@ -12,6 +12,8 @@ void setup(){
 }
 
 void draw(){
+  background(255); //Added to make the canvas reset
+  
   if (thingsToDraw != null) {
     for (Object o : thingsToDraw) {
       o.draw();
