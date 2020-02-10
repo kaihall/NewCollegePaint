@@ -12,7 +12,7 @@ public class CurveTool extends Tool {
     xPoints = new ArrayList<Integer>();
     yPoints = new ArrayList<Integer>();
     drawing = false;
-    tightness = 5;
+    tightness = 4;
     sinceLastRead = tightness;
   }  
   
