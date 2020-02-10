@@ -20,7 +20,7 @@ public class objectFactory {
   
   public objectFactory() {}
   
-  Object createObject(objects o, int[] Fill, int[] Color, int[] args) {
+  Object createObject(objects o, color Fill, color Color, int[] args) {
     Object retVal;
     
     switch(o){
@@ -30,10 +30,11 @@ public class objectFactory {
          break;
        case pixel:
          println("Pixel");
-         retVal = new Line(args[0], args[1], Fill, Color, args[0], args[1]);         
+         retVal = new pixel(args[0], args[1], Color); 
+         break;
        case line:
          println("Line");
-         retVal = new rectangle(args[0], args[1], Fill, Color, args[2], args[3]);
+         retVal = new Line(args[0], args[1], Fill, Color, args[2], args[3]);
          break;
        case square:
          println("Square");
@@ -60,6 +61,19 @@ public class objectFactory {
   }
 }
 
+public class pixel extends Object {
+  public pixel (int x, int y, color stroke) {
+    this.x = x;
+    this.y = y;
+    this.Color = stroke;
+    this.fill = stroke;
+  }
+  
+  public void draw() {
+    prepColor();
+    set(x,y,Color);
+  }
+}
 
 public class circle extends Object {
   int radius = 0;
@@ -68,7 +82,7 @@ public class circle extends Object {
   //int[] fill;
   //int[] Color;
  
-  public circle(int X, int Y, int[] Fill, int[] COlor, int Radius) {
+  public circle(int X, int Y, color Fill, color COlor, int Radius) {
     x = X;
     y = Y;
     radius = Radius;
@@ -83,11 +97,11 @@ public class circle extends Object {
   
   public void setRadius(int r) {radius = r;}
   
-  //public void setX() {}
+  //public void setX(int x) {}
   
-  //public void setY() {} 
+  //public void setY(int y) {} 
   
-  //public void setFill() {}
+  //public void setFill(color c) {}
   
   //public void setColor() {}
   
@@ -101,7 +115,7 @@ public class rectangle extends Object {
   //int[] fill;
   //int[] Color;
  
-  public rectangle(int X, int Y, int[] Fill, int[] COlor, int W, int H) {
+  public rectangle(int X, int Y, color Fill, color COlor, int W, int H) {
     x = X;
     y = Y;
     w = W;
@@ -137,7 +151,7 @@ public class ellipse extends Object {
   //int[] fill;
   //int[] Color;
  
-  public ellipse(int X, int Y, int[] Fill, int[] COlor, int W, int H) {
+  public ellipse(int X, int Y, color Fill, color COlor, int W, int H) {
     x = X;
     y = Y;
     w = W;
@@ -173,7 +187,7 @@ public class Line extends Object {
   //int[] fill;
   //int[] Color;
  
-  public Line(int X, int Y, int[] Fill, int[] COlor, int eX, int eY) {
+  public Line(int X, int Y, color Fill, color COlor, int eX, int eY) {
     startX = X;
     startY = Y;
     endX = eX;
@@ -211,7 +225,7 @@ public class triangle extends Object {
   //int[] fill;
   //int[] Color;
  
-  public triangle(int X, int Y, int[] Fill, int[] COlor, int eX, int eY, int mX, int mY) {
+  public triangle(int X, int Y, color Fill, color COlor, int eX, int eY, int mX, int mY) {
     startX = X;
     startY = Y;
     endX = eX;
