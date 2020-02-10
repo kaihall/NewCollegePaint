@@ -134,6 +134,10 @@ public class rectangle extends Object {
   
   public void setHeight(int H) {h = H;}
   
+  public int getWidth() {return w;}
+  
+  public int getHeight() {return h;}
+  
   //public void setX() {}
   
   //public void setY() {} 
@@ -169,6 +173,10 @@ public class ellipse extends Object {
   public void setWidth(int W) {w = W;}
   
   public void setHeight(int H) {h = H;}
+  
+  public int getWidth() {return w;}
+  
+  public int getHeight() {return h;}
   
   //public void setX() {}
   

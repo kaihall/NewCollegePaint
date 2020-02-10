@@ -3,6 +3,7 @@ public class CircleTool extends Tool {
   ellipse working;
   int sinceLastClick;
   int startX, startY;
+  ellipse last;
   
   public CircleTool(){
     super();
@@ -12,6 +13,7 @@ public class CircleTool extends Tool {
     sinceLastClick = 0;
     startX = 0;
     startY = 0;
+    last = new ellipse(50,50,color(255),color(0),50,50);
   }  
   
   void draw() {}
@@ -23,6 +25,7 @@ public class CircleTool extends Tool {
       if (isActive) {
         if (drawing) {
           drawing = false;
+          last = working;
         }
         else {
           drawing = true;
@@ -43,5 +46,10 @@ public class CircleTool extends Tool {
       working.setHeight(2*(mouseY-startY));
     }
   }
-
+  
+  void drawLastCircle() {
+    ellipse addThis = new ellipse(last.getX()+20,last.getY()+20,last.getFill(),last.getStroke(),last.getWidth(),last.getHeight());
+    last = addThis;
+    thingsToDraw.add(addThis);
+  }
 }

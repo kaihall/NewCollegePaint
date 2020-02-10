@@ -3,6 +3,7 @@ public class RectangleTool extends Tool {
   rectangle working;
   int sinceLastClick;
   int startX, startY;
+  rectangle last;
   
   public RectangleTool(){
     super();
@@ -13,6 +14,7 @@ public class RectangleTool extends Tool {
     sinceLastClick = 0;
     startX = 0;
     startY = 0;
+    last = new rectangle(50,50,color(255),color(0),50,50);
   }  
   
   void draw() {}
@@ -44,5 +46,10 @@ public class RectangleTool extends Tool {
       working.setHeight(mouseY-startY);
     }
   }
-
+  
+  void drawLastRectangle() {
+    rectangle addThis = new rectangle(last.getX()+20,last.getY()+20,last.getFill(),last.getStroke(),last.getWidth(),last.getHeight());
+    last = addThis;
+    thingsToDraw.add(addThis);
+  }
 }

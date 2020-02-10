@@ -1,14 +1,14 @@
 ArrayList<Object> thingsToDraw = new ArrayList<Object>(); // Generic List that functions as a Grouped set of shapes
 Tool currentTool;
+PencilTool pencilTool = new PencilTool();
+LineTool lineTool = new LineTool();
+RectangleTool rectTool = new RectangleTool();
+CircleTool circleTool = new CircleTool();
 
 void setup(){
   fullScreen();
   background(255);
   frameRate(60);
-  PencilTool pencilTool = new PencilTool();
-  LineTool lineTool = new LineTool();
-  RectangleTool rectTool = new RectangleTool();
-  CircleTool circleTool = new CircleTool();
   currentTool = circleTool;
   circleTool.setActive(true);
 }
@@ -78,3 +78,13 @@ void draw(){
   */
 //}
 //}
+
+void keyPressed() {
+  if (key == 'c') {
+    circleTool.drawLastCircle();
+  }
+  
+  else if (key == 'r') {
+    rectTool.drawLastRectangle();
+  }
+}

@@ -11,6 +11,8 @@ public abstract class Object {
   public int getY() {return y;}
   public void setFill (color args) {fill = args; } // takes in array of fills;
   public void setColor(color args) {Color = args;} // takes in array of colors
+  public color getFill() {return fill;}
+  public color getStroke() {return Color;}
   
   // What does prepColor do?
   
