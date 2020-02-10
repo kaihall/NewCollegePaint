@@ -1,4 +1,4 @@
-public class ButtonBoxes {
+/*public class ButtonBoxes {
   
   private float x = width*3/4;
   private float y = width*0;
@@ -43,4 +43,4 @@ public class ButtonBoxes {
     rect(width*.925, height*.4, boxWidth, boxHeight);
 
   }
-}
+}*/

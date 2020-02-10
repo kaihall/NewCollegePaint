@@ -37,8 +37,8 @@ void draw(){
   //ButtonBoxes button = new ButtonBoxes();
   Title greeting = new Title();
   greeting.showTitle();
-  ButtonBoxes boxes = new ButtonBoxes();
-  boxes.createBox();
+  //ButtonBoxes boxes = new ButtonBoxes();
+  //boxes.createBox();
   ButtonDisplay display = new ButtonDisplay();
   display.displayButton(); 
   currentTool.sketch();
