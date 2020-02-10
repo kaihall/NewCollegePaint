@@ -6,6 +6,8 @@ public class ButtonDisplay{
     
     ButtonThumbnails pencil = new ButtonThumbnails(loadImage("pencil.png"), width*3/4, width*0, width/12, height/10);
     pencil.show();
+    ToolTip pencilTip = new ToolTip("Pencil tool", width*3/4+width*3/24, 0, width/12, height/10);
+    pencilTip.makeText();
     
     ButtonThumbnails line = new ButtonThumbnails(loadImage("line.png"), width*.838, width*0, width/12, height/10);
     line.show();
