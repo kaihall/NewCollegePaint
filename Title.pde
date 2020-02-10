@@ -1,8 +1,7 @@
-
 // The title page for NuPaint!
 
 public class Title {
-
+  PFont title = createFont("COMIC.TTF", 46);
   String message = "Welcome to NuPaint!";
   int textX = width/3;
   int textY = height/50;
@@ -13,6 +12,7 @@ public class Title {
   
   void showTitle(){ 
     textSize(46);
+    textFont(title);
     textAlign(int(alignX), TOP);
     fill(0,0,255);
     noStroke();

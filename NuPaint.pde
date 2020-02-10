@@ -28,13 +28,19 @@ void draw(){
   }
   
   // Too lazy to make global
-  ToolArea box = new ToolArea();
-  box.display(); 
-  Buttons button = new Buttons();
-  button.display();
+  ToolBox box = new ToolBox();
+  box.show();
+  //HitBox hitbox = new HitBox(width*3/4, 0, width/12, height/10);
+  //hitbox.display();
+  ExtrasPanel panel = new ExtrasPanel();
+  panel.show();
+  //ButtonBoxes button = new ButtonBoxes();
   Title greeting = new Title();
   greeting.showTitle();
-  currentTool.sketch();
+  ButtonBoxes boxes = new ButtonBoxes();
+  boxes.createBox();
+  ButtonDisplay display = new ButtonDisplay();
+  display.displayButton();
 }
 
 // pressing any mouse button will make a circle appear at that point
