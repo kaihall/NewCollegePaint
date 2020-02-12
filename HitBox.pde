@@ -1,30 +1,28 @@
 public class HitBox{ 
   
-  float xPos;
-  float yPos;
-  float wid;
-  float hite;
+  float xDistance;
+  float yDistance;
   float radiusX;
   float radiusY;
-  float xWidth;
-  float yLength;
+  float xCoordRect;
+  float yCoordRect;
   
-  HitBox(float x, float y, float Width, float Height, float xW, float yL){
-    this.xPos = x;
-    this.yPos = y;
-    this.wid = Width;
-    this.hite = Height;
-    this.xWidth = xW;
-    this.yLength = yL;
+  public HitBox(float x, float y, float RadiusX, float RadiusY, float xCoord, float yCoord){
+    this.xDistance = x;
+    this.yDistance = y;
+    this.radiusX = RadiusX;
+    this.radiusY = RadiusY;
+    this.xCoordRect = xCoord;
+    this.yCoordRect = yCoord;
   }
   
   void makeHitBox(){
     
-      if(dist(mouseX, mouseY, xPos, yPos) < radiusX){
-        if(dist(mouseX, mouseY, xPos, yPos) < radiusY/2){
+    if(dist(mouseX, mouseY, xDistance, yDistance) < radiusX){
+      if(dist(mouseX, mouseY, xDistance, yDistance) < radiusY/2){
           stroke(255,0,0);
-          fill(0); // alpha value zero so transparent
-          rect(xWidth, yLength, wid, hite);
+          fill(0,0,0,0); // alpha value zero so transparent
+          rect(xCoordRect, yCoordRect, radiusX, radiusY);
         }
       }
     }

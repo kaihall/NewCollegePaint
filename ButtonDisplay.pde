@@ -11,18 +11,22 @@ public class ButtonDisplay{
     pencil.show();
     ToolTip pencilTip = new ToolTip("Pencil tool", (width*3/4)+(wid)/2, height/20, wid, hite);
     pencilTip.makeText();
-    HitBox pencilBox = new HitBox((width*3/4)+(wid)/2, height/20, wid, hite);
-    pencilBox.makeHitBox(width*3/4, width*0);
+    HitBox pencilBox = new HitBox((width*3/4)+(wid)/2, height/20, wid, hite, width*3/4, width*0);
+    pencilBox.makeHitBox();
     
     ButtonThumbnails line = new ButtonThumbnails(loadImage("line.png"), width*.838, width*0, wid, hite);
     line.show();
     ToolTip lineTip = new ToolTip("Line tool", (width*.838)+(wid)/2, height/20, wid, hite);
     lineTip.makeText();
+    HitBox lineBox = new HitBox((width*.838)+(wid)/2, height/20, wid, hite, width*.838, width*0);
+    lineBox.makeHitBox();
     
     ButtonThumbnails curve = new ButtonThumbnails(loadImage("curve.png"), width*.925, width*0, wid, hite);
     curve.show();
     ToolTip curveTip = new ToolTip("Curve tool", (width*.925)+(wid)/2, height/20, wid, hite);
     curveTip.makeText();
+    HitBox curveBox = new HitBox((width*.925)+(wid)/2, height/20, wid, hite, width*.925, width*0);
+    curveBox.makeHitBox();
     
     // row 2
     
