@@ -15,12 +15,27 @@ public class PencilTool extends Tool {
   }  
   
   void sketch(){
-    if(mouseX < width*.75 && mousePressed){
-      if(isActive){
+    if(isActive){
+      if(mouseX < width*.75 && mousePressed){
         args[0] = mouseX;
         args[1] = mouseY;
         thingsToDraw.add(of.createObject(objects.pixel,fill,stroke,args));
      }
     }
+  }
+}
+
+
+public class pixel extends Object {
+  public pixel (int x, int y, color stroke) {
+    this.x = x;
+    this.y = y;
+    this.Color = stroke;
+    this.fill = stroke;
+  }
+  
+  public void draw() {
+    prepColor();
+    set(x,y,Color);
   }
 }

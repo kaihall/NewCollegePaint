@@ -10,9 +10,7 @@ public class LineTool extends Tool {
     drawing = false;
     working = null;
     sinceLastClick = 0;
-  }  
-  
-  void draw() {}
+  }
   
   void sketch(){
     sinceLastClick++;
@@ -40,4 +38,41 @@ public class LineTool extends Tool {
     }
   }
 
+}
+
+
+public class Line extends Object {
+  int startX = 0;
+  int startY = 0;
+  int endX = 0;
+  int endY = 0;
+  //int[] fill;
+  //int[] Color;
+ 
+  public Line(int X, int Y, color Fill, color COlor, int eX, int eY) {
+    startX = X;
+    startY = Y;
+    endX = eX;
+    endY = eY;
+    fill = Fill;
+    Color = COlor;
+  }
+ 
+  public void draw() {
+    prepColor();
+    line(startX, startY, endX, endY);
+  }
+  
+  public void setX(int x) {startX = x;}
+  
+  public void setY(int y) {startY = y;} 
+  
+  public void setEndX(int x) {endX = x;}
+  
+  public void setEndY(int y) {endY = y;}
+  
+  //public void setFill() {}
+  
+  //public void setColor() {}
+  
 }

@@ -83,3 +83,32 @@ public class CurveTool extends Tool {
     }
   }
 }
+
+public class curve extends Object {
+  ArrayList<Integer> xPoints;
+  ArrayList<Integer> yPoints;
+  
+  public curve(int[] args, color stroke) {
+    Color = stroke;
+    
+    xPoints = new ArrayList<Integer>();
+    yPoints =new ArrayList<Integer>();
+    
+    for (int i = 0; i < args.length; i++) {
+      if (i%2 == 0) xPoints.add(args[i]);
+      else yPoints.add(args[i]);
+    }
+  }
+  
+  public void draw(){
+    prepColor();
+    noFill();
+    beginShape();
+    curveVertex(xPoints.get(0),yPoints.get(0));
+    for (int i = 0; i < min(xPoints.size(),yPoints.size()); i++) {
+      curveVertex(xPoints.get(i),yPoints.get(i));
+    }
+    curveVertex(xPoints.get(xPoints.size()-1), yPoints.get(yPoints.size()-1));
+    endShape();
+  }
+}

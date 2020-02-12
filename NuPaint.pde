@@ -1,16 +1,28 @@
-ArrayList<Object> thingsToDraw = new ArrayList<Object>(); // Generic List that functions as a Grouped set of shapes
-ArrayList<Object> tempDraw = new ArrayList<Object>(); //For temporary objects (ex. pencil drawing used for curve tool). Please clear after use.
+ArrayList<Object> thingsToDraw; // Generic List that functions as a Grouped set of shapes
+ArrayList<Object> tempDraw; //For temporary objects (ex. pencil drawing used for curve tool). Please clear after use.
 Tool currentTool;
-PencilTool pencilTool = new PencilTool();
-LineTool lineTool = new LineTool();
-RectangleTool rectTool = new RectangleTool();
-CircleTool circleTool = new CircleTool();
-CurveTool curveTool = new CurveTool();
+PencilTool pencilTool;
+LineTool lineTool;
+RectangleTool rectTool;
+CircleTool circleTool;
+CurveTool curveTool;
+PolygonTool polygonTool;
 
 void setup(){
   fullScreen();
   background(255);
-  frameRate(60);
+  frameRate(30);
+  
+  thingsToDraw = new ArrayList<Object>();
+  tempDraw = new ArrayList<Object>();
+  
+  pencilTool = new PencilTool();
+  lineTool = new LineTool();
+  rectTool = new RectangleTool();
+  circleTool = new CircleTool();
+  curveTool = new CurveTool();
+  polygonTool = new PolygonTool();
+  
   currentTool = pencilTool;
   //circleTool.setActive(true);
 }
@@ -118,6 +130,10 @@ void keyPressed() {
   
   else if (key == '5') {
     switchTool(circleTool);
+  }
+  
+  else if (key == '6') {
+    switchTool(polygonTool);
   }
 }
 
