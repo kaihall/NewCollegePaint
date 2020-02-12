@@ -40,7 +40,7 @@ void draw(){
   //ButtonBoxes boxes = new ButtonBoxes();
   //boxes.createBox();
   ButtonDisplay display = new ButtonDisplay();
-  display.displayButton(); 
+  display.displayButton();
   currentTool.sketch();
 }
 

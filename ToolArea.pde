@@ -7,7 +7,7 @@ public class ToolArea {
     stroke(0,0,0);
     strokeWeight(4);
     rectMode(CENTER);
-    rect(width*(0.875), 0, width/4, height/2);
+    rect(width*(0.875), 0, width/4, height*2);
     textSize(32);
     fill(0,0,255);
     text("Extras!", width*.85, height/2);
