@@ -20,9 +20,6 @@ public class HitBox{
   
   void makeHitBox(){
     
-    this.xWidth = xW;
-    this.yLength = yL;
-    
       if(dist(mouseX, mouseY, xPos, yPos) < radiusX){
         if(dist(mouseX, mouseY, xPos, yPos) < radiusY/2){
           stroke(255,0,0);
