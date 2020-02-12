@@ -17,7 +17,9 @@ public class ToolTip {
     
     if(dist(mouseX, mouseY, xDistance, yDistance) < radiusX){
       if(dist(mouseX, mouseY, xDistance, yDistance) < radiusY/2){
-        fill(0);
+        fill(255,0,0,10);
+        rect(mouseX-25, mouseY-15, .5*textWidth(toolTipString)*1.1, 25);
+        fill(0,225,0);
         textSize(20);
         text(toolTipString, mouseX-20, mouseY-10);
       }
