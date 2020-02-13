@@ -38,6 +38,7 @@ public abstract class Object {
   
   public void draw() {
     prepColor();
+    strokeWeight(1);
     pushMatrix();
     translate(offsetX,offsetY);
     rotate(angle);

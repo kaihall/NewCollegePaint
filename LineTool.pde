@@ -14,7 +14,7 @@ public class LineTool extends Tool {
   
   void sketch(){
     sinceLastClick++;
-    if (mouseX < width*.75 && mousePressed && sinceLastClick > 5) {
+    if (mouseX < width*.75 && mousePressed && sinceLastClick > inputDelay) {
       sinceLastClick = 0;
       if (isActive) {
         if (drawing) {

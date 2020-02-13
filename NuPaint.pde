@@ -7,8 +7,10 @@ RectangleTool rectTool;
 CircleTool circleTool;
 CurveTool curveTool;
 PolygonTool polygonTool;
+TextTool textTool;
 boolean gridMode;
 boolean commentsMode;
+int inputDelay;
 
 void setup(){
   fullScreen();
@@ -24,12 +26,17 @@ void setup(){
   circleTool = new CircleTool();
   curveTool = new CurveTool();
   polygonTool = new PolygonTool();
+  textTool = new TextTool();
   
   gridMode = false;
   commentsMode = true;
   
+  inputDelay = int(frameRate/10);
+  
   currentTool = pencilTool;
   //circleTool.setActive(true);
+  
+  thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
 }
 
 void draw(){
@@ -51,9 +58,6 @@ void draw(){
   //hitbox.display();
   ExtrasPanel panel = new ExtrasPanel();
   panel.show();
-  //ButtonBoxes button = new ButtonBoxes();
-  Title greeting = new Title();
-  greeting.showTitle();
   //ButtonBoxes boxes = new ButtonBoxes();
   //boxes.createBox();
   ButtonDisplay display = new ButtonDisplay();
@@ -109,37 +113,52 @@ void draw(){
 //}
 
 void keyPressed() {
-  if (key == 'c') {
-    circleTool.drawLastCircle();
+  if (currentTool != textTool){
+    if (key == 'c') {
+      circleTool.drawLastCircle();
+    }
+    
+    else if (key == 'r') {
+      rectTool.drawLastRectangle();
+    }
+    
+    else if (key == '1') {
+      switchTool(pencilTool);
+    }
+    
+    else if (key == '2') {
+      switchTool(lineTool);
+    }
+    
+    else if (key == '3') {
+      switchTool(curveTool);
+    }
+    
+    else if (key == '4') {
+      switchTool(rectTool);
+    }
+    
+    else if (key == '5') {
+      switchTool(circleTool);
+    }
+    
+    else if (key == '6') {
+      switchTool(polygonTool);
+    }
+    
+    else if (key == '7') {
+      switchTool(textTool);
+    }
   }
   
-  else if (key == 'r') {
-    rectTool.drawLastRectangle();
+  else if (key == CODED && keyCode == SHIFT) {
+    textTool.shiftPressed(true);
   }
-  
-  else if (key == '1') {
-    switchTool(pencilTool);
-  }
-  
-  else if (key == '2') {
-    switchTool(lineTool);
-  }
-  
-  else if (key == '3') {
-    switchTool(curveTool);
-  }
-  
-  else if (key == '4') {
-    switchTool(rectTool);
-  }
-  
-  else if (key == '5') {
-    switchTool(circleTool);
-  }
-  
-  else if (key == '6') {
-    switchTool(polygonTool);
-  }
+}
+
+void keyReleased() {
+  if (currentTool == textTool && key == CODED && keyCode == SHIFT)
+    textTool.shiftPressed(false);
 }
 
 void switchTool(Tool t) {
