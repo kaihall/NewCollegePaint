@@ -1,6 +1,5 @@
 public class ButtonThumbnails {
-  
-  
+
   PImage picture;
   float xPos, yPos;
   float wid, hite;
