@@ -1,5 +1,13 @@
+// Items for drawing
 ArrayList<Object> thingsToDraw; // Generic List that functions as a Grouped set of shapes
 ArrayList<Object> tempDraw; //For temporary objects (ex. pencil drawing used for curve tool). Please clear after use.
+ToolBox box;
+ExtrasPanel panel;
+ButtonDisplay display;
+UI basicUI;
+message welcomeMessage; // This is a welcome message for the user
+
+// Tools
 Tool currentTool;
 PencilTool pencilTool;
 LineTool lineTool;
@@ -8,6 +16,8 @@ CircleTool circleTool;
 CurveTool curveTool;
 PolygonTool polygonTool;
 TextTool textTool;
+
+// Global Variables
 boolean gridMode;
 boolean commentsMode;
 int inputDelay;
@@ -15,7 +25,7 @@ int inputDelay;
 void setup(){
   fullScreen();
   background(255);
-  frameRate(30);
+  frameRate(-1); // uncaps FPS
   
   thingsToDraw = new ArrayList<Object>();
   tempDraw = new ArrayList<Object>();
@@ -31,86 +41,44 @@ void setup(){
   gridMode = false;
   commentsMode = true;
   
-  inputDelay = int(frameRate/10);
+  inputDelay = int(frameRate/10); // This is currently unused
   
   currentTool = pencilTool;
   //circleTool.setActive(true);
   
-  thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
+  // thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
+  welcomeMessage = new message(2, "WELCOME");
+  display = new ButtonDisplay();
+  panel = new ExtrasPanel();
+  box = new ToolBox();
+  basicUI = new UI(box, panel, display);
 }
+
 
 void draw(){
-  background(255); //Added to make the canvas reset
-  
-  if (thingsToDraw != null) {
-    for (Object o : thingsToDraw) {
-      o.draw();
+  // THis means the user is not inside the toolbar area
+  if (mouseX <= width*0.748) {
+    if (basicUI.checkDrawStatus()) { 
+      basicUI.lastDraw();
     }
-    for (Object o : tempDraw) {
-      o.draw();
-    }
-  }
-  
-  // Too lazy to make global
-  ToolBox box = new ToolBox();
-  box.show();
-  //HitBox hitbox = new HitBox(width*3/4, 0, width/12, height/10);
-  //hitbox.display();
-  ExtrasPanel panel = new ExtrasPanel();
-  panel.show();
-  //ButtonBoxes boxes = new ButtonBoxes();
-  //boxes.createBox();
-  ButtonDisplay display = new ButtonDisplay();
-  display.displayButton();
-  currentTool.sketch();
-}
-
-// pressing any mouse button will make a circle appear at that point
-/*void mousePressed() {
-  objects currType = objects.circle;
-  int[] Fill = {100,60,0};
-  int[] Color = {100,100,0};
-  int[] args = {mouseX, mouseY, width/8};
-  
-  objectFactory oF = new objectFactory();
-  
-  Object dummyObject = oF.createObject(currType, Fill, Color, args);
-  thingsToDraw.add(dummyObject);
-}
-
-
-
-
-// Objects are grouped
-
-/*void keyPressed() {
-  int jumpVal = 10;
-  if (thingsToDraw != null) {
-    if (key == CODED) {
-      if (keyCode == UP) {
-        for (Object o : thingsToDraw) {
-          o.setY(o.getY()-jumpVal); 
-        }
+    //background(255); //Added to make the canvas reset
+    noStroke();
+    fill(255,255,255); // This covers the canvas
+    rect(0, 0, width*0.748, height);
+    if (thingsToDraw != null) {
+      for (Object o : thingsToDraw) {
+        o.draw();
       }
-      if (keyCode == LEFT) {
-        for (Object o : thingsToDraw) {
-          o.setX(o.getX()-jumpVal); 
-        }
-      }    
-      if (keyCode == RIGHT) {
-        for (Object o : thingsToDraw) {
-          o.setX(o.getX()+jumpVal); 
-        }
-      }  
-      if (keyCode == DOWN) {
-        for (Object o : thingsToDraw) {
-          o.setY(o.getY()+jumpVal); 
-        }
-      }      
+      for (Object o : tempDraw) {
+        o.draw();
+      }
     }
-  */
-//}
-//}
+    currentTool.sketch();
+  } else {
+    basicUI.draw();
+  }
+  welcomeMessage.draw();
+}
 
 void keyPressed() {
   if (currentTool != textTool){
@@ -149,6 +117,10 @@ void keyPressed() {
     else if (key == '7') {
       switchTool(textTool);
     }
+   
+    else if (key == 'x') {
+      exit(); 
+    }
   }
   
   else if (key == CODED && keyCode == SHIFT) {
@@ -165,4 +137,61 @@ void switchTool(Tool t) {
   currentTool.setActive(false);
   currentTool = t;
   t.setActive(true);
+}
+
+class message {
+  int messageDuration;
+  String text;
+  long timeCreated;
+  
+  message(int time, String Message) {
+    messageDuration = time;
+    text = Message;
+    timeCreated = System.nanoTime();
+  }
+  
+  void draw() {
+    long curTime = System.nanoTime();
+    int timeRunning = (int)((curTime - timeCreated) / 1000000000.0f);
+    if (timeRunning < messageDuration) {
+      Object item = new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, text);
+      item.draw();
+    }
+  }
+  
+  // thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
+  
+}
+
+class UI {
+  boolean wasJustDrawn; // This is a boolean to show if this was drawn the previous frame
+  ToolBox box;
+  ExtrasPanel panel;
+  ButtonDisplay display;
+  
+  UI(ToolBox boxItem, ExtrasPanel Panel, ButtonDisplay Display) {
+    wasJustDrawn = true;
+    box = boxItem;
+    panel = Panel;
+    display = Display;
+  }
+  
+  void draw() {
+    wasJustDrawn = true;
+    box.show();
+    panel.show();
+    display.displayButton();
+  } 
+  
+  public boolean checkDrawStatus() {
+    boolean retVal = wasJustDrawn;
+    wasJustDrawn = false;
+    return retVal;
+  }
+  
+  void lastDraw() {
+    box.show();
+    panel.show();
+    display.displayButton();    
+  }
 }
