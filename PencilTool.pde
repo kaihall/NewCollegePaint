@@ -8,13 +8,18 @@ public class PencilTool extends Tool {
   float radiusY = height/6;
   public boolean PIXELMODE = false;
   boolean drawing;
+  ArrayList<Integer> xPoints;
+  ArrayList<Integer> yPoints;
+  int[] args2;
   
-  // Constructor should also take in RGB values so user can select colors from color selector
+  // NOTE: If there's time, come back and make it a little more smooth (append new points onto a curve instead of making a new one at the very end)
   
   public PencilTool(){
     super();
     args = new int[4];
     drawing = false;
+    xPoints = new ArrayList<Integer>();
+    yPoints = new ArrayList<Integer>();
   }  
   
   void sketch(){
@@ -35,13 +40,33 @@ public class PencilTool extends Tool {
         else {
           args[2] = mouseX;
           args[3] = mouseY;
-          thingsToDraw.add(of.createObject(objects.line,fill,stroke,args));
+          tempDraw.add(of.createObject(objects.line,fill,stroke,args));
           args[0] = mouseX;
           args[1] = mouseY;
+          xPoints.add(mouseX);
+          yPoints.add(mouseY);
         }
      }
      
-     else if (drawing) drawing = false;
+     else if (drawing) {
+        xPoints.add(mouseX);
+        yPoints.add(mouseY);
+        drawing = false;
+        tempDraw.clear();
+         
+        //read in the points
+        args2 = new int[xPoints.size() + yPoints.size()];
+         
+        for (int i = 0; i < args2.length; i++) {
+          if (i%2==0) args2[i] = xPoints.remove(0);
+          else args2[i] = yPoints.remove(0);
+        }
+         
+        xPoints.clear();
+        yPoints.clear();
+       
+        thingsToDraw.add(of.createObject(objects.curve,fill,stroke,args2));
+     }
     } 
     
     else if (drawing) drawing = false;

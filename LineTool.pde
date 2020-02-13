@@ -37,7 +37,10 @@ public class LineTool extends Tool {
       working.setEndY(mouseY);
     }
   }
-
+  
+  void makeLine(int x1, int y1, int x2, int y2) {
+    thingsToDraw.add(new Line(x1,y1,fill,stroke,x2,y2));
+  }
 }
 
 
