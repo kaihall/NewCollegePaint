@@ -65,6 +65,7 @@ public class ellipse extends Object {
   //int[] Color;
  
   public ellipse(int X, int Y, color Fill, color COlor, int W, int H) {
+    super();
     x = X;
     y = Y;
     w = W;
@@ -103,6 +104,7 @@ public class circle extends Object {
   //int[] Color;
  
   public circle(int X, int Y, color Fill, color COlor, int Radius) {
+    super();
     x = X;
     y = Y;
     radius = Radius;

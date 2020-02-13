@@ -50,6 +50,7 @@ public class Line extends Object {
   //int[] Color;
  
   public Line(int X, int Y, color Fill, color COlor, int eX, int eY) {
+    super();
     startX = X;
     startY = Y;
     endX = eX;

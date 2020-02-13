@@ -14,7 +14,7 @@ public class CurveTool extends Tool {
     yPoints = new ArrayList<Integer>();
     drawing = false;
     tightness = 4;
-    sinceLastRead = tightness;
+    sinceLastRead = 4;
   }  
   
   void sketch(){
@@ -90,6 +90,8 @@ public class curve extends Object {
   ArrayList<Integer> yPoints;
   
   public curve(int[] args, color stroke) {
+    super();
+    
     Color = stroke;
     
     xPoints = new ArrayList<Integer>();
