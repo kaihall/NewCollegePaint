@@ -34,8 +34,7 @@ public class pixel extends Object {
     this.fill = stroke;
   }
   
-  public void draw() {
-    prepColor();
+  public void drawShape() {
     set(x,y,Color);
   }
 }

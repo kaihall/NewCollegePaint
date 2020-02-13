@@ -74,8 +74,7 @@ public class rectangle extends Object {
     Color = COlor;
   }
  
-  public void draw() {
-    prepColor();
+  public void drawShape() {
     rectMode(CORNER);
     rect(x, y, w, h);
   }

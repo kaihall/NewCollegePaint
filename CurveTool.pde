@@ -101,8 +101,7 @@ public class curve extends Object {
     }
   }
   
-  public void draw(){
-    prepColor();
+  public void drawShape(){
     noFill();
     beginShape();
     curveVertex(xPoints.get(0),yPoints.get(0));

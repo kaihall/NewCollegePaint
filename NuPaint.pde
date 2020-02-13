@@ -7,6 +7,8 @@ RectangleTool rectTool;
 CircleTool circleTool;
 CurveTool curveTool;
 PolygonTool polygonTool;
+boolean gridMode;
+boolean commentsMode;
 
 void setup(){
   fullScreen();
@@ -22,6 +24,9 @@ void setup(){
   circleTool = new CircleTool();
   curveTool = new CurveTool();
   polygonTool = new PolygonTool();
+  
+  gridMode = false;
+  commentsMode = true;
   
   currentTool = pencilTool;
   //circleTool.setActive(true);

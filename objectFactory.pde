@@ -86,8 +86,7 @@ public class triangle extends Object {
     Color = COlor;
   }
  
-  public void draw() {
-    prepColor();
+  public void drawShape() {
     triangle(startX, startY, midX, midY, endX, endY);
   }
   

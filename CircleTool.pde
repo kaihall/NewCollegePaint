@@ -73,8 +73,7 @@ public class ellipse extends Object {
     Color = COlor;
   }
  
-  public void draw() {
-    prepColor();
+  public void drawShape() {
     ellipse(x, y, w, h);
   }
   
@@ -111,8 +110,7 @@ public class circle extends Object {
     Color = COlor;
   }
  
-  public void draw() {
-    prepColor();
+  public void drawShape() {
     circle(x, y, radius);
   }
   

@@ -58,8 +58,7 @@ public class Line extends Object {
     Color = COlor;
   }
  
-  public void draw() {
-    prepColor();
+  public void drawShape() {
     line(startX, startY, endX, endY);
   }
   

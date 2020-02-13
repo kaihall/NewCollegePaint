@@ -1,62 +1,36 @@
-public class PolygonTool extends Tool{
-  
-  int lastX;
-  int lastY;
-  int startX;
-  int startY;
-  int sinceLastClick;
+public class PolygonTool extends Tool {
   boolean drawing;
-  Line working;
-  ArrayList<Integer> xPoints;
-  ArrayList<Integer> yPoints;
+  polygon working;
+  int sinceLastClick;
+  int startX, startY;
+  int sides;
   
   public PolygonTool(){
-    lastX = 0;
-    lastY = 0;
-    startX = -500;
-    startY = 500;
-    sinceLastClick = 0;
+    super();
     drawing = false;
     working = null;
-    xPoints = new ArrayList<Integer>();
-    yPoints = new ArrayList<Integer>();
-  }
-   
-   
-  void sketch() {
+    sinceLastClick = 0;
+    startX = 0;
+    startY = 0;
+    sides = 5;
+  }  
+  
+  void draw() {}
+  
+  void sketch(){
     sinceLastClick++;
-    if (isActive) {
-      if (mouseX < width*.75 && mousePressed && sinceLastClick > 5) {
-        sinceLastClick = 0;
+    if (mouseX < width*.75 && mousePressed && sinceLastClick > 5) {
+      sinceLastClick = 0;
+      if (isActive) {
         if (drawing) {
-            if (dist(mouseX,mouseY,startX,startY) < 10) {
-              drawing = false;
-              tempDraw.clear();
-              xPoints.add(startX);
-              yPoints.add(startY);
-              thingsToDraw.add(new Polygon(stroke,fill,xPoints,yPoints));
-              xPoints.clear();
-              yPoints.clear();
-            } else {
-              tempDraw.add(new Line(lastX, lastY, fill, stroke, mouseX, mouseY));
-              working.setX(mouseX);
-              working.setY(mouseY);
-              xPoints.add(mouseX);
-              yPoints.add(mouseY);
-              lastX = mouseX;
-              lastY = mouseY;
-            }
+          drawing = false;
         }
         else {
           drawing = true;
-          working = new Line(mouseX, mouseY, fill, stroke, mouseX, mouseY);
-          tempDraw.add(working);
-          xPoints.add(mouseX);
-          yPoints.add(mouseY);
+          working = new polygon(mouseX, mouseY, fill, stroke, sides, 2);
+          thingsToDraw.add(working);
           startX = mouseX;
           startY = mouseY;
-          lastX = mouseX;
-          lastY = mouseY;
         }
       }
     }
@@ -66,34 +40,41 @@ public class PolygonTool extends Tool{
       thingsToDraw.remove(working);
     }
     else if (drawing) {
-      working.setEndX(mouseX);
-      working.setEndY(mouseY);
+      working.setRadius(abs(mouseX-startX)+abs(mouseY-startY));
     }
   }
 }
 
-public class Polygon extends Object {
-  color stroke;
-  color fill;
-  ArrayList<Integer> xPoints;
-  ArrayList<Integer> yPoints;
+
+
+public class polygon extends Object{
   
-  public Polygon(color stroke, color fill, ArrayList<Integer> xCoords, ArrayList<Integer> yCoords) {
-    this.stroke = stroke;
+  int sides;
+  int radius;
+  
+  public polygon(int x, int y, color fill, color stroke, int sides, int radius) {
+    this.x = x;
+    this.y = y;
+    this.Color = stroke;
     this.fill = fill;
-    this.xPoints = new ArrayList<Integer>(xCoords);
-    this.yPoints = new ArrayList<Integer>(yCoords);
+    this.sides = sides;
+    this.radius = radius;
   }
   
-  public void draw() {
+  //Found on Processing's website, thanks Processing
+  public void drawShape() {
     prepColor();
-    noFill();
+    float angle = TWO_PI / sides;
     beginShape();
-    vertex(xPoints.get(0),yPoints.get(0));
-    for (int i = 0; i < min(xPoints.size(),yPoints.size()); i++) {
-      vertex(xPoints.get(i),yPoints.get(i));
+    for (float a = 0; a < TWO_PI; a += angle) {
+      float sx = x + cos(a) * radius;
+      float sy = y + sin(a) * radius;
+      vertex(sx, sy);
     }
-    vertex(xPoints.get(xPoints.size()-1), yPoints.get(yPoints.size()-1));
-    endShape();
+    endShape(CLOSE);
+  }
+  
+  public void setRadius(int r) {
+    radius = r;
   }
 }

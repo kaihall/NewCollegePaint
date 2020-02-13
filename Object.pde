@@ -3,8 +3,10 @@ public abstract class Object {
   int y=0;
   color fill;
   color Color;
+  float angle;
+  float offsetX;
+  float offsetY;
   
-  public void draw() {};
   public void setX(int X) {x= X;}
   public void setY(int Y) {y=Y;}  
   public int getX() {return x;}
@@ -20,4 +22,15 @@ public abstract class Object {
     fill(fill);
     stroke(Color);
   }
+  
+  public void draw() {
+    prepColor();
+    pushMatrix();
+    translate(offsetX,offsetY);
+    rotate(angle);
+    drawShape();
+    popMatrix();
+  }
+  
+  public abstract void drawShape();
 }
