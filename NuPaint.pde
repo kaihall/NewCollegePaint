@@ -25,7 +25,9 @@ int inputDelay;
 void setup(){
   fullScreen();
   background(255);
-  frameRate(-1); // uncaps FPS
+  //frameRate(-1); // uncaps FPS
+  frameRate(60); //cap framerate at 60 to keep the input delay from mucking up
+  inputDelay = int(frameRate/5); //used in several tools to keep them from registering repeated user input.
   
   thingsToDraw = new ArrayList<Object>();
   tempDraw = new ArrayList<Object>();
@@ -41,13 +43,11 @@ void setup(){
   gridMode = false;
   commentsMode = true;
   
-  inputDelay = int(frameRate/10); // This is currently unused
-  
   currentTool = pencilTool;
   //circleTool.setActive(true);
   
-  // thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
-  welcomeMessage = new message(2, "WELCOME");
+  thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
+  //welcomeMessage = new message(2, "WELCOME");
   display = new ButtonDisplay();
   panel = new ExtrasPanel();
   box = new ToolBox();
@@ -56,6 +56,7 @@ void setup(){
 
 
 void draw(){
+
   // THis means the user is not inside the toolbar area
   if (mouseX <= width*0.748) {
     if (basicUI.checkDrawStatus()) { 
@@ -77,7 +78,7 @@ void draw(){
   } else {
     basicUI.draw();
   }
-  welcomeMessage.draw();
+  //welcomeMessage.draw();
 }
 
 void keyPressed() {
