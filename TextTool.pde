@@ -160,7 +160,7 @@ public class Text extends Object {
   }
   
   public void drawShape() {
-    prepColor();
+    //prepColor();
     textSize(size);
     textFont(font);
     text(text,x,y);

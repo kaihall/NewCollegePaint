@@ -1,11 +1,11 @@
 
 public class CurveTool extends Tool {
-  ArrayList<Integer> xPoints;
-  ArrayList<Integer> yPoints;
-  boolean drawing;
-  int tightness;
-  int[] args2;
-  int sinceLastRead;
+  ArrayList<Integer> xPoints;  // The x values of points used to make the curve
+  ArrayList<Integer> yPoints;  // The y values of points used to make the curve
+  boolean drawing;      // True if the user is currently drawing with this tool
+  int tightness;        // When tightness = n, the curve draws itself using every nth point in the drawing made by the user
+  int[] args2;          // For storing values for pixels
+  int sinceLastRead;    // Number of frames since the last point was read in
   
   public CurveTool(){
     super();
@@ -17,6 +17,10 @@ public class CurveTool extends Tool {
     sinceLastRead = 0;
   }  
   
+  /*
+   * While the user has the mouse button down, draws a series of pixels and stores every nth point where n = tightness. 
+   
+   */
   void sketch(){
     if(isActive){
       sinceLastRead++;

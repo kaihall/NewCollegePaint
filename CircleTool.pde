@@ -1,10 +1,13 @@
 public class CircleTool extends Tool {
-  boolean drawing;
-  ellipse working;
-  int sinceLastClick;
-  int startX, startY;
-  ellipse last;
+  boolean drawing;      //true if the user is drawing an ellipse right now
+  ellipse working;      //the ellipse that the user is drawing
+  int sinceLastClick;   //time since the user last clicked on the canvas
+  int startX, startY;   //the center of the ellipse that the user is drawing
+  ellipse last;         //the last ellipse drawn (defaults to 50-radius black and white circle in top left corner of screen)
   
+  /*
+   * Constructor; deactivates tool, initializes variables to arbitrary values, sets last ellipse equal to the default ellipse
+   */
   public CircleTool(){
     super();
     //isActive = true;
@@ -16,8 +19,12 @@ public class CircleTool extends Tool {
     last = new ellipse(50,50,color(255),color(0),50,50);
   }  
   
-  void draw() {}
   
+  /*
+   * If the tool is active and the user clicks on the canvas...
+   *    If the user isn't drawing anything: Stick a circle at the current location and start drawing
+   *    If the user is drawing something: Stop drawing and leave the circle where it is
+   */
   void sketch(){
     sinceLastClick++;
     if (mouseX < width*.75 && mousePressed && sinceLastClick > inputDelay) {
@@ -37,16 +44,22 @@ public class CircleTool extends Tool {
       }
     }
     
+    // If the tool somehow got turned off in the middle of drawing something, stop drawing
     if (!isActive && drawing) {
       drawing = false;
       thingsToDraw.remove(working);
     }
+    
+    // Make the ellipse bigger as the mouse moves away from it and smaller as it moves closer
     else if (drawing) {
       working.setWidth(2*(mouseX-startX));
       working.setHeight(2*(mouseY-startY));
     }
   }
   
+  /*
+   * Draws the most recent ellipse drawn by the user at a slight offset from the original, or a 50-radius black and white circle if no ellipses have been drawn yet
+  */
   void drawLastCircle() {
     ellipse addThis = new ellipse(last.getX()+20,last.getY()+20,last.getFill(),last.getStroke(),last.getWidth(),last.getHeight());
     last = addThis;

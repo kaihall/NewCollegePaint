@@ -6,11 +6,14 @@ public abstract class Object {
   float angle;
   int offsetX;
   int offsetY;
+  boolean selected;
+  int boundX1, boundY1, boundX2, boundY2; //marks the top left and bottom right corners of the bounding box
   
   public Object() {
     offsetX = 0;
     offsetY = 0;
     angle = 0;
+    selected = false;
   }
   
   public void setX(int X) {x= X;}
@@ -21,6 +24,11 @@ public abstract class Object {
   public void setColor(color args) {Color = args;} // takes in array of colors
   public color getFill() {return fill;}
   public color getStroke() {return Color;}
+  
+  public void select() {
+    if (selected) selected = false;
+    else selected = true;
+  }
   
   public void move(int x, int y) {
     offsetX += x;
