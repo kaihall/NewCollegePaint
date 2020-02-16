@@ -68,6 +68,9 @@ public class CircleTool extends Tool {
   
   public Object getObject() { return working; }
   public boolean drawing() { return drawing; }
+  public boolean isInBounds(int X, int Y, int MaxX, int MaxY) {
+    return (X + abs(X-mouseX) <= MaxX);
+  }
 }
 
 

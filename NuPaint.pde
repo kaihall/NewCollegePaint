@@ -94,7 +94,7 @@ void draw(){
         if (!currentTool.drawing()) {
           currentTool.sketch(); 
         } else {
-          if ((working.getX() + abs(working.getX()-mouseX) <= width*0.748)) {
+          if (currentTool.isInBounds(working.getX(), working.getY(), int(width*0.748), height)) {
             currentTool.sketch();
           }
         }

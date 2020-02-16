@@ -45,4 +45,6 @@ public abstract class Tool {
     return false; 
   }
   
+  public boolean isInBounds(int x, int y, int maxX, int maxY) { return false; }
+  
 }

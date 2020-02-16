@@ -45,6 +45,10 @@ public class PolygonTool extends Tool {
   }
   
   public Object getObject() { return working; }
+  public boolean drawing() { return drawing; }
+  public boolean isInBounds(int x, int y, int MaxX, int MaxY) {
+    return (x + abs(x-mouseX) + abs(y-mouseY) <= MaxX);
+  }
 }
 
 
