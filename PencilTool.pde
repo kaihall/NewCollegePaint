@@ -71,6 +71,8 @@ public class PencilTool extends Tool {
     
     else if (drawing) drawing = false;
   }
+  
+  public Object getObject() { return null; }
 }
 
 

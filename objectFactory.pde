@@ -13,7 +13,7 @@ This will also hold all of the basic types of shapes Processing can make
 */
 
 enum objects {
-  circle, square, pixel, rectangle, line, ellipse, triangle, curve
+  circle, square, pixel, rectangle, line, ellipse, triangle, curve, polygon, text
 }
 
 public class objectFactory {
@@ -25,35 +25,27 @@ public class objectFactory {
     
     switch(o){
        case circle:
-         println("Circle");
          retVal = new circle(args[0], args[1], Fill, Color, args[2]);
          break;
        case pixel:
-         println("Pixel");
          retVal = new pixel(args[0], args[1], Color); 
          break;
        case line:
-         println("Line");
          retVal = new Line(args[0], args[1], Fill, Color, args[2], args[3]);
          break;
        case square:
-         println("Square");
          retVal = new rectangle(args[0], args[1], Fill, Color, args[2], args[2]);
          break;
        case rectangle:
-         println("Rectangle");
          retVal = new rectangle(args[0], args[1], Fill, Color, args[2], args[3]);
          break;
        case ellipse:
-         println("Ellipse");
          retVal = new ellipse(args[0], args[1], Fill, Color, args[2], args[3]);
          break;   
        case triangle:
-         println("Triangle");
          retVal = new triangle(args[0], args[1], Fill, Color, args[2], args[3], args[4], args[5]);
          break; 
        case curve:
-         println("Curve");
          retVal = new curve(args,Color);
          break;
        default:

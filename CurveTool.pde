@@ -59,6 +59,7 @@ public class CurveTool extends Tool {
      
     }
   }
+  public Object getObject() { return null; }
 }
 
 public class curve extends Object {

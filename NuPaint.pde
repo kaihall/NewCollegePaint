@@ -21,11 +21,11 @@ TextTool textTool;
 boolean gridMode;
 boolean commentsMode;
 int inputDelay;
+ArrayList<objects> expandables;
 
 void setup(){
   fullScreen();
   background(255);
-  //frameRate(-1); // uncaps FPS
   frameRate(60); //cap framerate at 60 to keep the input delay from mucking up
   inputDelay = int(frameRate/5); //used in several tools to keep them from registering repeated user input.
   
@@ -46,41 +46,75 @@ void setup(){
   currentTool = pencilTool;
   //circleTool.setActive(true);
   
-  thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
-  //welcomeMessage = new message(2, "WELCOME");
+  //thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
+  welcomeMessage = new message(2, "Welcome to NuPaint!");
   display = new ButtonDisplay();
   panel = new ExtrasPanel();
   box = new ToolBox();
   basicUI = new UI(box, panel, display);
+  
+  // Items that can expand
+  expandables = new ArrayList<objects>();
+  expandables.add(objects.text); expandables.add(objects.ellipse); expandables.add(objects.polygon);
 }
 
 
 void draw(){
+  inputDelay = (int)(frameRate/5); // This updates the real inputDelay Value
 
-  // THis means the user is not inside the toolbar area
+  // This means the user is not inside the toolbar area
   if (mouseX <= width*0.748) {
+    
+    // Draw the UI if it was hovered over 1 frame before
     if (basicUI.checkDrawStatus()) { 
       basicUI.lastDraw();
     }
-    //background(255); //Added to make the canvas reset
+    
+    // White out the canvas
     noStroke();
     fill(255,255,255); // This covers the canvas
     rect(0, 0, width*0.748, height);
+    
+    // Draw all previous Objects to the canvas
     if (thingsToDraw != null) {
       for (Object o : thingsToDraw) {
         o.draw();
       }
+    }
+    if (tempDraw != null) {
       for (Object o : tempDraw) {
         o.draw();
       }
     }
-    currentTool.sketch();
+  
+    // Draw what the User is currently Doing if they aren't going out of bounds
+    if (expandables.contains(currentTool.getType())) {
+      Object working = currentTool.getObject();
+      if (working != null) {
+        if (!currentTool.drawing()) {
+          currentTool.sketch(); 
+        } else {
+          if ((working.getX() + abs(working.getX()-mouseX) <= width*0.748)) {
+            currentTool.sketch();
+          }
+        }
+      } else {
+        currentTool.sketch(); 
+      }
+    } else {
+      currentTool.sketch(); 
+    }
+    
+  // This means the user is inside the toolbar area
   } else {
     basicUI.draw();
   }
-  //welcomeMessage.draw();
+  
+  // Draw Welcome Message
+  welcomeMessage.draw();
 }
 
+// objects Type Options: {circle, square, pixel, rectangle, line, ellipse, triangle, curve, polygon, text}
 void keyPressed() {
   if (currentTool != textTool){
     if (key == 'c') {
@@ -92,34 +126,35 @@ void keyPressed() {
     }
     
     else if (key == '1') {
-      switchTool(pencilTool);
+      switchTool(pencilTool, objects.pixel);
     }
     
     else if (key == '2') {
-      switchTool(lineTool);
+      switchTool(lineTool, objects.line);
     }
     
     else if (key == '3') {
-      switchTool(curveTool);
+      switchTool(curveTool, objects.curve);
     }
     
     else if (key == '4') {
-      switchTool(rectTool);
+      switchTool(rectTool, objects.rectangle);
     }
     
     else if (key == '5') {
-      switchTool(circleTool);
+      switchTool(circleTool, objects.ellipse);
     }
     
     else if (key == '6') {
-      switchTool(polygonTool);
+      switchTool(polygonTool, objects.polygon);
     }
     
     else if (key == '7') {
-      switchTool(textTool);
+      switchTool(textTool, objects.text);
     }
    
     else if (key == 'x') {
+      println("Goodbye :)");
       exit(); 
     }
   }
@@ -134,9 +169,10 @@ void keyReleased() {
     textTool.shiftPressed(false);
 }
 
-void switchTool(Tool t) {
+void switchTool(Tool t, objects type) {
   currentTool.setActive(false);
   currentTool = t;
+  t.setType(type);
   t.setActive(true);
 }
 

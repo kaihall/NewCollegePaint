@@ -43,6 +43,8 @@ public class PolygonTool extends Tool {
       working.setRadius(abs(mouseX-startX)+abs(mouseY-startY));
     }
   }
+  
+  public Object getObject() { return working; }
 }
 
 

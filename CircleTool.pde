@@ -65,6 +65,9 @@ public class CircleTool extends Tool {
     last = addThis;
     thingsToDraw.add(addThis);
   }
+  
+  public Object getObject() { return working; }
+  public boolean drawing() { return drawing; }
 }
 
 

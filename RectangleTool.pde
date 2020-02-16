@@ -5,7 +5,7 @@ public class RectangleTool extends Tool {
   int startX, startY;
   rectangle last;
   
-  public RectangleTool(){
+  public RectangleTool() {
     super();
     //isActive = true;
     args = new int[4];
@@ -53,6 +53,8 @@ public class RectangleTool extends Tool {
     last = addThis;
     thingsToDraw.add(addThis);
   }
+  
+  public Object getObject() { return working; }
 }
 
 

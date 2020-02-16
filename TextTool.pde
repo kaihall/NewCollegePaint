@@ -46,6 +46,7 @@ public class TextTool extends Tool {
       }
       
       if (mouseX < width*.75 && mousePressed && sinceLastClick > inputDelay) {
+        println(inputDelay);
         sinceLastClick = 0;
         if (!drawing) {
           drawing = true;

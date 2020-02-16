@@ -1,6 +1,7 @@
 public abstract class Tool {
   boolean isActive;
   objectFactory of;
+  objects type;
   color stroke;
   color fill;
   int[] args;
@@ -26,5 +27,22 @@ public abstract class Tool {
     stroke = c;
   }
   
+  public void setType(objects Type) {
+    this.type = Type;
+  }
+  
+  public objects getType() {
+    return this.type;
+  }
+  
+  // This is used to keep the user from drawing over the toolbar in NuPaint draw()
+  public Object getObject() {
+    return null; 
+  }
+  
+  // This is used to keep the user from drawing over the toolbar in NuPaint draw()
+  public boolean drawing() {
+    return false; 
+  }
   
 }
