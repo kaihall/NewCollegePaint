@@ -16,6 +16,7 @@ CircleTool circleTool;
 CurveTool curveTool;
 PolygonTool polygonTool;
 TextTool textTool;
+GridTool gridTool;
 
 // Global Variables
 boolean gridMode;
@@ -39,6 +40,7 @@ void setup(){
   curveTool = new CurveTool();
   polygonTool = new PolygonTool();
   textTool = new TextTool();
+  gridTool = new GridTool();
   
   gridMode = false;
   commentsMode = true;
@@ -56,12 +58,17 @@ void setup(){
   // Items that can expand
   expandables = new ArrayList<objects>();
   expandables.add(objects.text); expandables.add(objects.ellipse); expandables.add(objects.polygon);
+  
+  // Draw for the first time
+  background(255);
+  if (gridMode) gridTool.drawGrid();
+  thingsToDraw.get(0).draw();
 }
 
 
 void draw(){
   inputDelay = (int)(frameRate/5); // This updates the real inputDelay Value
-
+  
   // This means the user is not inside the toolbar area
   if (mouseX <= width*0.748 && currentTool != null) {
     
@@ -105,6 +112,10 @@ void draw(){
       currentTool.sketch(); 
     }
     
+    // Draw the grid (if on)
+    if (gridMode) {
+      gridTool.drawGrid();
+    }
   // This means the user is inside the toolbar area
   } else {
     basicUI.draw();
