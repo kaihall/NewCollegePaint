@@ -43,11 +43,11 @@ void setup(){
   gridMode = false;
   commentsMode = true;
   
-  currentTool = null;
+  currentTool = pencilTool;
   //circleTool.setActive(true);
   
-  //thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
-  welcomeMessage = new message(2, "Welcome to NuPaint!");
+  thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
+  //welcomeMessage = new message(2, "Welcome to NuPaint!");
   display = new ButtonDisplay();
   panel = new ExtrasPanel();
   box = new ToolBox();
@@ -111,7 +111,7 @@ void draw(){
   }
   
   // Draw Welcome Message
-  welcomeMessage.draw();
+  //welcomeMessage.draw();
 }
 
 // objects Type Options: {circle, square, pixel, rectangle, line, ellipse, triangle, curve, polygon, text}

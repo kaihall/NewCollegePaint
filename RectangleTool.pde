@@ -49,7 +49,9 @@ public class RectangleTool extends Tool {
   }
   
   void drawLastRectangle() {
-    rectangle addThis = new rectangle(last.getX()+20,last.getY()+20,last.getFill(),last.getStroke(),last.getWidth(),last.getHeight());
+    int newX = last.getX()+20+last.getWidth() >= width*0.75 ? 0 : last.getX()+20;
+    int newY = last.getX()+20+last.getWidth() >= width*0.75 ? 0 : last.getY()+20;
+    rectangle addThis = new rectangle(newX,newY,last.getFill(),last.getStroke(),last.getWidth(),last.getHeight());
     last = addThis;
     thingsToDraw.add(addThis);
   }

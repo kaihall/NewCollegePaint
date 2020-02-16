@@ -61,7 +61,9 @@ public class CircleTool extends Tool {
    * Draws the most recent ellipse drawn by the user at a slight offset from the original, or a 50-radius black and white circle if no ellipses have been drawn yet
   */
   void drawLastCircle() {
-    ellipse addThis = new ellipse(last.getX()+20,last.getY()+20,last.getFill(),last.getStroke(),last.getWidth(),last.getHeight());
+    int newX = last.getX()+20+last.getWidth() >= width*0.75 ? 0 : last.getX()+20;
+    int newY = last.getX()+20+last.getWidth() >= width*0.75 ? 0 : last.getY()+20;
+    ellipse addThis = new ellipse(newX,newY,last.getFill(),last.getStroke(),last.getWidth(),last.getHeight());
     last = addThis;
     thingsToDraw.add(addThis);
   }
