@@ -13,7 +13,7 @@ This will also hold all of the basic types of shapes Processing can make
 */
 
 enum objects {
-  circle, square, pixel, rectangle, line, ellipse, triangle, curve, polygon, text
+  circle, square, pixel, rectangle, line, ellipse, triangle, curve, polygon, text, scribble
 }
 
 public class objectFactory {
@@ -47,6 +47,9 @@ public class objectFactory {
          break; 
        case curve:
          retVal = new curve(args,Color);
+         break;
+       case scribble:
+         retVal = new scribble(args, Color);
          break;
        default:
          println("Something went wrong, it appears that you passed a shape that does not exists");

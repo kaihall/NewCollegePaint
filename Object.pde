@@ -7,7 +7,7 @@ public abstract class Object {
   int offsetX;
   int offsetY;
   boolean selected;
-  int boundX1, boundY1, boundX2, boundY2; //marks the top left and bottom right corners of the bounding box
+  int maxX, maxY, minX, minY;
   
   public Object() {
     offsetX = 0;
@@ -53,6 +53,8 @@ public abstract class Object {
     drawShape();
     popMatrix();
   }
+  
+  //public boolean 
   
   public abstract void drawShape();
 }

@@ -59,6 +59,7 @@ public class TextTool extends Tool {
         else {
           drawing = false;
           text = "";
+          textHeight = 20;
         }
       }
     }
@@ -72,7 +73,7 @@ public class TextTool extends Tool {
     stroke(0,80);
     noFill();
     strokeWeight(1);
-    rect(x-10,y-10,textWidth(text)*0.6+size,textHeight+size);
+    rect(x-10,y-10,textWidth(text)+size,textHeight+size);
   }
   
   /*
@@ -81,10 +82,10 @@ public class TextTool extends Tool {
    * Enter: Adds a line break.
    * Tab: Adds 5 spaces (adding a tab character did nothing).
    * Escape: Exits out of the current text box.
-   * Others (not coded): Adds the character to the text box. Makes it uppercase if shift is down.
+   * Others (not coded): Adds the character to the text box. Makes it uppercase if shift is down. Adds a line break if it gets to the edge of the canvas.
   */
   private void checkKeys() {
-    if (keyPressed && sinceLastPress > inputDelay/4) {
+    if (keyPressed && sinceLastPress > inputDelay/2) {
       sinceLastPress = 0;
       
       if (key == BACKSPACE) {
@@ -106,6 +107,10 @@ public class TextTool extends Tool {
       }
       
       else if (key != DELETE && key != CODED) {
+        if (x + textWidth(text+key) + size > width*0.75) {
+          text += '\n';
+          textHeight += size*1.5;
+        }
         if (shift) text += (new String("" + key)).toUpperCase();
         else text += key;
       }
@@ -122,6 +127,10 @@ public class TextTool extends Tool {
     shift = down;
   }
 }
+
+
+
+
 
 public class Text extends Object {
   

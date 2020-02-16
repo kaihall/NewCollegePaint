@@ -65,7 +65,7 @@ public class PencilTool extends Tool {
         xPoints.clear();
         yPoints.clear();
        
-        thingsToDraw.add(of.createObject(objects.curve,fill,stroke,args2));
+        thingsToDraw.add(of.createObject(objects.scribble,fill,stroke,args2));
      }
     } 
     
