@@ -43,7 +43,7 @@ void setup(){
   gridMode = false;
   commentsMode = true;
   
-  currentTool = pencilTool;
+  currentTool = null; // Set to null so that the user can then select pencil. Setting this to pencil first means when the user selects pencil it doesn't do anything
   //circleTool.setActive(true);
   
   thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
