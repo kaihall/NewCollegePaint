@@ -17,10 +17,14 @@ public class ToolTip {
     
     if(dist(mouseX, mouseY, xDistance, yDistance) < radiusX){
       if(dist(mouseX, mouseY, xDistance, yDistance) < radiusY/2){
-        fill(255,0,0,10);
-        rect(mouseX-25, mouseY-15, .5*textWidth(toolTipString)*1.1, 25);
-        fill(0,225,0);
+        //rect(mouseX-25, mouseY-15, .5*textWidth(toolTipString)*1.1, 25);
+        fill(0,0,0);
         textSize(20);
+        for (int i=-1; i<2; i++) {
+          text(toolTipString, mouseX-20+i, mouseY-10);
+          text(toolTipString, mouseX-20, mouseY-10+i);
+        }
+        fill(0,225,0);
         text(toolTipString, mouseX-20, mouseY-10);
       }
     }
