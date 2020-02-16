@@ -43,11 +43,11 @@ void setup(){
   gridMode = false;
   commentsMode = true;
   
-  currentTool = pencilTool;
+  currentTool = null;
   //circleTool.setActive(true);
   
-  thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
-  //welcomeMessage = new message(2, "Welcome to NuPaint!");
+  //thingsToDraw.add(new Text(width/4, height/2, 46, color(0,0,255), Font.Fun, "Welcome to NuPaint!"));
+  welcomeMessage = new message(2, "Welcome to NuPaint!");
   display = new ButtonDisplay();
   panel = new ExtrasPanel();
   box = new ToolBox();
@@ -63,7 +63,7 @@ void draw(){
   inputDelay = (int)(frameRate/5); // This updates the real inputDelay Value
 
   // This means the user is not inside the toolbar area
-  if (mouseX <= width*0.748) {
+  if (mouseX <= width*0.748 && currentTool != null) {
     
     // Draw the UI if it was hovered over 1 frame before
     if (basicUI.checkDrawStatus()) { 
@@ -111,7 +111,7 @@ void draw(){
   }
   
   // Draw Welcome Message
-  //welcomeMessage.draw();
+  welcomeMessage.draw();
 }
 
 // objects Type Options: {circle, square, pixel, rectangle, line, ellipse, triangle, curve, polygon, text}
