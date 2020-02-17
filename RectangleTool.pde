@@ -49,8 +49,10 @@ public class RectangleTool extends Tool {
   }
   
   public void cleanUp() {
-    drawing = false;
-    thingsToDraw.remove(working);
+    if (drawing) {
+      drawing = false;
+      thingsToDraw.remove(working);
+    }
   }
   
   void drawLastRectangle() {
@@ -94,14 +96,14 @@ public class rectangle extends Object {
   
   public void setWidth(int W) {
     w = W;
-    maxX = x + w/2;
-    minX = x - w/2;
+    maxX = max(x, x + w);
+    minX = min(x, x + w);
   }
   
   public void setHeight(int H) {
     h = H;
-    maxY = y + h/2;
-    minY = y - h/2;
+    maxY = max(y, y + h);
+    minY = min(y, y + h);
   }
   
   public int getWidth() {return w;}

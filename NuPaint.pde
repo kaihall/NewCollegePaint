@@ -31,7 +31,8 @@ colorSelectorButton colorSelBut;
 void setup(){
   fullScreen();
   background(255);
-  frameRate(-1); //cap framerate at 60 to keep the input delay from mucking up
+  //frameRate(-1); //cap framerate at 60 to keep the input delay from mucking up
+  frameRate(60);
   inputDelay = int(frameRate/5); //used in several tools to keep them from registering repeated user input.
   
   thingsToDraw = new ArrayList<Object>();

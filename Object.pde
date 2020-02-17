@@ -62,6 +62,7 @@ public abstract class Object {
     if (selected) {
       noFill();
       stroke(100,100,255,100);
+      rectMode(CORNER);
       rect(minX, minY, maxX-minX, maxY-minY);
     }
     

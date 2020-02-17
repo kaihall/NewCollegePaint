@@ -43,8 +43,10 @@ public class LineTool extends Tool {
   }
   
   public void cleanUp() {
-    drawing = false;
-    thingsToDraw.remove(working);
+    if (drawing) {
+      drawing = false;
+      thingsToDraw.remove(working);
+    }
   }
   
   public Object getObject() { return working; }

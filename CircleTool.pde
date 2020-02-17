@@ -69,8 +69,10 @@ public class CircleTool extends Tool {
   }
   
   public void cleanUp() {
-    drawing = false;
-    thingsToDraw.remove(working);
+    if (drawing) {
+      drawing = false;
+      thingsToDraw.remove(working);
+    }
   }
   
   public Object getObject() { return working; }
@@ -110,14 +112,14 @@ public class ellipse extends Object {
   
   public void setWidth(int W) {
     w = W;
-    maxX = x + w/2;
-    minX = x - w/2;
+    maxX = max(x + w/2, x - w/2);
+    minX = min(x + w/2, x - w/2);
   }
   
   public void setHeight(int H) {
     h = H;
-    maxY = y + h/2;
-    minY = y - h/2;
+    maxY = max(y + h/2, y - h/2);
+    minY = min(y + h/2, y - h/2);
   }
   
   public int getWidth() {return w;}
