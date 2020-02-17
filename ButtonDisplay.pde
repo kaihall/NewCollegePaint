@@ -72,7 +72,7 @@ public class ButtonDisplay {
     comment.show();
     ToolTip commentTip = new ToolTip("Comment tool", (width*.925)+(wid)/2, height*.25, wid, hite);
     commentTip.makeText();
-    HitBox commentBox = new HitBox((width*.925)+(wid)/2, height*.25, wid, hite, width*.925, height/5, commentsTool, objects.text);
+    HitBox commentBox = new HitBox((width*.925)+(wid)/2, height*.25, wid, hite, width*.925, height/5, null, null);
     commentBox.makeHitBox();
     
     // row 4
@@ -129,35 +129,42 @@ public class ButtonDisplay {
   
   void drawExtras(objects objectType) {
     Extras e = new Extras();
+    
     if (objectType == objects.pixel) {
       e.pencilExtra();
+      return;
     }
     if (objectType == objects.line) {
       e.lineExtra();
+      return;
     }
     if (objectType == objects.curve) {
       e.curveExtra();
+      return;
     }
     if (objectType == objects.rectangle) {
       e.rectangleExtra();
+      return;
     }
     if (objectType == objects.ellipse) {
       e.circleExtra();
-    }
-    if (objectType == objects.pixel) {
-      e.pencilExtra();
+      return;
     }
     if (objectType == objects.polygon) {
       e.polygonExtra();
+      return;
     }
     if (objectType == objects.text) {
       e.textExtra();
+      return;
     }
     if (objectType == objects.image) {
       e.imageExtra();
+      return;
     }
     if (objectType == objects.grid) {
       e.gridExtra();
+      return;
     }                               
   }
 }

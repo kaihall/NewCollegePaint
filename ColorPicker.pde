@@ -1,7 +1,9 @@
-public class ColorPicker {
+public class ColorPicker extends Object{
   
   int x, y, w, h, c;
   PImage cpImage;
+  boolean newColor = false;
+  int sinceLastPress=0;
   
   public ColorPicker (int x, int y, int w, int h, int c ){
     this.x = x;
@@ -58,17 +60,26 @@ public class ColorPicker {
     }
   }
   
-  public void render (){
+  public void draw (){
     image( cpImage, x, y );
+    sinceLastPress++;
     if( mousePressed &&
         mouseX >= x && 
         mouseX < x + w &&
         mouseY >= y &&
-        mouseY < y + h )
+        mouseY < y + h &&
+        sinceLastPress > inputDelay)
     {
+      if (c != get(mouseX, mouseY)) newColor = true;
       c = get( mouseX, mouseY );
     }
     fill( c );
     rect( x, y+h+10, 20, 20 );
   }
+  
+  public color getColor() { sinceLastPress=0; newColor = false; return c; }
+  
+  public void drawShape() { }
+ 
+  public boolean checkState() { return newColor; }
 }

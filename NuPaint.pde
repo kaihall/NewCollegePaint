@@ -26,6 +26,7 @@ boolean gridMode;
 boolean commentsMode;
 int inputDelay;
 ArrayList<objects> expandables;
+colorSelectorButton colorSelBut;
 
 void setup(){
   fullScreen();
@@ -70,6 +71,9 @@ void setup(){
   if (gridMode) gridTool.drawGrid();
   thingsToDraw.get(0).draw();
   basicUI.draw();
+  
+  // For color variable
+  colorSelBut = new colorSelectorButton(0,0,0,0,0);
 }
 
 
