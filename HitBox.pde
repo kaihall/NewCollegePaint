@@ -16,6 +16,7 @@ public class HitBox {
   objects objectType;
   Tool tool;
   //boolean isClicked = false;
+  int sinceLastClick;
   
   public HitBox(float x, float y, float RadiusX, float RadiusY, float xCoord, float yCoord, Tool t, objects o) {
     this.xDistance = x;
@@ -26,6 +27,7 @@ public class HitBox {
     this.yCoordRect = yCoord;
     this.tool = t;
     this.objectType = o;
+    this.sinceLastClick = inputDelay;
   }
   
   void makeHitBox(){
@@ -40,8 +42,10 @@ public class HitBox {
   }
   
   void updateTool() {
-    if (mousePressed && mouseButton == LEFT) {
+    sinceLastClick++;
+    if (mousePressed && mouseButton == LEFT && sinceLastClick > inputDelay) {
       if (tool != null && (currentTool != tool || currentTool == gridTool)) {
+        sinceLastClick = 0;
         switchTool(tool, objectType); 
       }
     }
@@ -67,6 +71,35 @@ public class HitBox {
     if (currentTool == gridTool) {
       if (gridMode) gridMode = false;
       else gridMode = true;
+      
+      // White out the canvas
+      noStroke();
+      fill(255,255,255); // This covers the canvas
+      rect(0, 0, width*0.748, height);
+      
+      // Draw all previous Objects to the canvas
+      if (thingsToDraw != null) {
+        for (Object o : thingsToDraw) {
+          o.draw();
+        }
+      }
+      if (tempDraw != null) {
+        for (Object o : tempDraw) {
+          o.draw();
+        }
+      }
+      
+      // Draw comments (if on)
+      if (commentsMode) {
+        for (Object o : comments) {
+          o.draw();
+        }
+      }
+      
+      // Draw the grid (if on)
+      if (gridMode) {
+        gridTool.drawGrid();
+      }
     }
   }  
 }
