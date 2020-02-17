@@ -55,6 +55,8 @@ public class ImageTool extends Tool {
     try{
       f = new File(dataPath("") + "//" + fileName);  //output file path
       System.out.println(f.getPath());
+
+      f = new File(dataPath("") + "\\" + fileName);  //output file path
       
       if (image != null) {
         ImageIO.write(image, imageFilter.getExtension(f), f);
