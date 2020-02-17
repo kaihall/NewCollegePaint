@@ -1,4 +1,4 @@
-public class ButtonDisplay{
+public class ButtonDisplay {
   
   private float wid = width/12;
   private float hite = height/10;
@@ -65,7 +65,7 @@ public class ButtonDisplay{
     image.show();
     ToolTip imageTip = new ToolTip("Image tool", (width*.838)+(wid)/2, height*.25, wid, hite);
     imageTip.makeText();
-    HitBox imageBox = new HitBox((width*.838)+(wid)/2, height*.25, wid, hite, width*.838, height/5, null, null);
+    HitBox imageBox = new HitBox((width*.838)+(wid)/2, height*.25, wid, hite, width*.838, height/5, imageTool, objects.image);
     imageBox.makeHitBox();
     
     ButtonThumbnails comment = new ButtonThumbnails(loadImage("comments.png"), width*.925, height/5, wid, hite);
@@ -89,7 +89,7 @@ public class ButtonDisplay{
     grid.show();
     ToolTip gridTip = new ToolTip("grid tool", (width*.838)+(wid)/2, height*.35, wid, hite);
     gridTip.makeText();
-    HitBox gridBox = new HitBox((width*.838)+(wid)/2, height*.35, wid, hite, width*.838, height*.30, null, null);
+    HitBox gridBox = new HitBox((width*.838)+(wid)/2, height*.35, wid, hite, width*.838, height*.30, gridTool, objects.grid);
     gridBox.makeHitBox();
     
     ButtonThumbnails pan = new ButtonThumbnails(loadImage("pan.png"), width*.925, height*.30, wid, hite);
@@ -124,6 +124,40 @@ public class ButtonDisplay{
     HitBox printBox = new HitBox((width*.925)+(wid)/2, height*.45, wid, hite, width*.925, height*.40, null, null);
     printBox.makeHitBox();
     
-    
+    if (currentTool != null) drawExtras(currentTool.getType());
   } 
+  
+  void drawExtras(objects objectType) {
+    Extras e = new Extras();
+    if (objectType == objects.pixel) {
+      e.pencilExtra();
+    }
+    if (objectType == objects.line) {
+      e.lineExtra();
+    }
+    if (objectType == objects.curve) {
+      e.curveExtra();
+    }
+    if (objectType == objects.rectangle) {
+      e.rectangleExtra();
+    }
+    if (objectType == objects.ellipse) {
+      e.circleExtra();
+    }
+    if (objectType == objects.pixel) {
+      e.pencilExtra();
+    }
+    if (objectType == objects.polygon) {
+      e.polygonExtra();
+    }
+    if (objectType == objects.text) {
+      e.textExtra();
+    }
+    if (objectType == objects.image) {
+      e.imageExtra();
+    }
+    if (objectType == objects.grid) {
+      e.gridExtra();
+    }                               
+  }
 }
