@@ -70,7 +70,8 @@ public class SelectTool extends Tool {
         if (current.underMouse()) {
           current.select();
           if (current.selected) selected.add(current);
-          else if (selected.contains(current)) selected.add(current);
+          else if (selected.contains(current)) selected.remove(current);
+          break;
         }
       }
     }
