@@ -28,7 +28,7 @@ ArrayList<objects> expandables;
 void setup(){
   fullScreen();
   background(255);
-  frameRate(60); //cap framerate at 60 to keep the input delay from mucking up
+  frameRate(-1); //cap framerate at 60 to keep the input delay from mucking up
   inputDelay = int(frameRate/5); //used in several tools to keep them from registering repeated user input.
   
   thingsToDraw = new ArrayList<Object>();
@@ -59,7 +59,7 @@ void setup(){
   
   // Items that can expand
   expandables = new ArrayList<objects>();
-  expandables.add(objects.text); expandables.add(objects.ellipse); expandables.add(objects.polygon);
+  expandables.add(objects.text); expandables.add(objects.ellipse); expandables.add(objects.polygon); expandables.add(objects.image);
   
   // Draw for the first time
   background(255);
@@ -223,6 +223,7 @@ class UI {
   ToolBox box;
   ExtrasPanel panel;
   ButtonDisplay display;
+  private Extras e = new Extras();
   
   UI(ToolBox boxItem, ExtrasPanel Panel, ButtonDisplay Display) {
     wasJustDrawn = true;
@@ -249,4 +250,6 @@ class UI {
     panel.show();
     display.displayButton();    
   }
+  
+
 }

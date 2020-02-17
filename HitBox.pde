@@ -6,6 +6,7 @@ enum tools {
 
 public class HitBox { 
   
+  Extras e = new Extras();
   float xDistance;
   float yDistance;
   float radiusX;
@@ -42,7 +43,6 @@ public class HitBox {
     if (mousePressed && mouseButton == LEFT) {
       if (tool != null && currentTool != tool) {
         switchTool(tool, objectType); 
-        println("HELP");
       }
     }
   }
@@ -53,6 +53,11 @@ public class HitBox {
     currentTool = t;
     t.setType(type);
     t.setActive(true);
-  }
-  
+    
+    // This only runs for the image tool. This is only run when the tool is switched to the image tool
+    if (objectType == objects.image) {
+      ImageTool it = (ImageTool)t;
+      it.uploadImage();
+    }
+  }  
 }

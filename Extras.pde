@@ -1,6 +1,6 @@
 public class Extras{
   
-  public Extras(){}
+  public Extras() {}
   
   void pencilExtra(){
     stroke(255);
@@ -200,12 +200,12 @@ public class Extras{
     
   }
   
-  void PolygonExtra(){
+  void polygonExtra(){
     
     
   }
   
-  void TextExtra(){
+  void textExtra(){
     
     
   }
@@ -218,6 +218,9 @@ public class Extras{
   void selectExtra(){
     
     
+  }
+  
+  void gridExtra() {
     
   }
 }
