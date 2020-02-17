@@ -80,6 +80,7 @@ public class TextTool extends Tool {
   public void cleanUp() {
     drawing = false;
     thingsToDraw.remove(working);
+    comments.remove(working);
     text = "";
     textHeight = 20;
   }

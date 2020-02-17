@@ -154,7 +154,7 @@ void draw(){
 
 // objects Type Options: {circle, square, pixel, rectangle, line, ellipse, triangle, curve, polygon, text}
 void keyPressed() {
-  if (currentTool != textTool){
+  if (!textTool.isActive){
     if (key == 'c') {
       circleTool.drawLastCircle();
     }
@@ -221,7 +221,7 @@ void keyPressed() {
 }
 
 void keyReleased() {
-  if (currentTool == textTool && key == CODED && keyCode == SHIFT)
+  if (textTool.isActive && key == CODED && keyCode == SHIFT)
     textTool.shiftPressed(false);
 }
 

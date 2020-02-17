@@ -111,7 +111,7 @@ public class Extras{
   }
   
   void imageExtra(){
-    textButton b = new textButton("Load Image", int(height*0.75));
+    textButton b = new textButton("Load Image", height*0.75);
     b.draw();
     if (b.isClicked()) imageTool.uploadImage();
   }
@@ -121,8 +121,56 @@ public class Extras{
     
   }
   
+  void commentsExtra() {
+    basicColorTiles(0,true);
+    
+    imageButton pencil = new imageButton("data/pencil.png", width*0.75 + width/12 - 5, height*0.65);
+    imageButton text = new imageButton("data/text.png", width*0.75 + width/8 + 5, height*0.65);
+    textButton cm = new textButton("Toggle Comments Mode", height*0.75);
+    
+    pencil.draw();
+    text.draw();
+    cm.draw();
+    
+    if (pencil.isClicked()) commentsTool.setTool(CommentsToolMode.Pencil);
+    if (text.isClicked()) commentsTool.setTool(CommentsToolMode.Text);
+    if (cm.isClicked()) {
+      if (commentsMode) commentsMode = false;
+      else commentsMode = true;
+      
+      // White out the canvas
+      noStroke();
+      fill(255,255,255); // This covers the canvas
+      rect(0, 0, width*0.748, height);
+      
+      // Draw all previous Objects to the canvas
+      if (thingsToDraw != null) {
+        for (Object o : thingsToDraw) {
+          o.draw();
+        }
+      }
+      if (tempDraw != null) {
+        for (Object o : tempDraw) {
+          o.draw();
+        }
+      }
+      
+      // Draw comments (if on)
+      if (commentsMode) {
+        for (Object o : comments) {
+          o.draw();
+        }
+      }
+      
+      // Draw the grid (if on)
+      if (gridMode) {
+        gridTool.drawGrid();
+      }
+    }
+  }
+  
   void gridExtra() {
-    textButton b = new textButton("Toggle Grid Mode", int(height*0.75));
+    textButton b = new textButton("Toggle Grid Mode", height*0.75);
     b.draw();
     if (b.isClicked()) {
       if (gridMode) gridMode = false;
@@ -164,13 +212,13 @@ public class Extras{
   }
   
   void printExtra() {
-    textButton b = new textButton("Print Drawing", int(height*0.75));
+    textButton b = new textButton("Print Drawing", height*0.75);
     b.draw();
     if (b.isClicked()) printTool.print();
   }
   
   void uploadExtra() {
-    textButton b = new textButton("Upload Drawing", int(height*0.75));
+    textButton b = new textButton("Upload Drawing", height*0.75);
     b.draw();
     if (b.isClicked()) uploadTool.upload();
   }
@@ -371,7 +419,7 @@ public class textButton extends button {
   
   String label;
   
-  public textButton(String text, int y) {
+  public textButton(String text, float y) {
     super(0,0,0,0,color(255));
     x1 = width*0.8;
     x2 = width - width*0.75 - width*0.1;
@@ -394,4 +442,28 @@ public class textButton extends button {
     //textMode(CORNER);
     textAlign(int(width*.375), TOP);
   }
+}
+
+
+
+public class imageButton extends button {
+  
+  PImage img;
+  
+  public imageButton(String file, float x, float y) {
+    super(x,y,x,y,color(0));
+    img = loadImage(file);
+    x1 = x;
+    y1 = y;
+    x2 = width/24;
+    y2 = height/20;
+  }
+  
+  public void draw() {
+    image(img,x1,y1,x2,y2);
+    noFill();
+    stroke(0);
+    rect(x1,y1,x2,y2);
+  }
+  
 }

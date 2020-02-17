@@ -15,7 +15,7 @@ public abstract class Object {
     offsetY = 0;
     angle = 0;
     scale = 1;
-    selected = true;
+    selected = false;
     minX = MAX_INT;
     minY = MAX_INT;
     maxX = MIN_INT;

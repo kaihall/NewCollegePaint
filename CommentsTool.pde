@@ -11,11 +11,14 @@ public class CommentsTool extends Tool {
   public void sketch() {
     if (isActive) {
       if (pencil) {
+        pencilTool.setActive(true);
         pencilTool.PIXELMODE = false;
         pencilTool.sketch(true, stroke);
       }
       
       else {
+        textTool.setActive(true);
+        textTool.setFont(Font.SansSerif);
         textTool.sketch(true, stroke);
       }
     }
@@ -29,6 +32,7 @@ public class CommentsTool extends Tool {
     if (ctm == CommentsToolMode.Pencil) {
       pencil = true;
       textTool.setActive(false);
+      textTool.cleanUp();
       pencilTool.setActive(true);
     }
     
@@ -36,6 +40,14 @@ public class CommentsTool extends Tool {
       pencil = false;
       textTool.setActive(true);
       pencilTool.setActive(false);
+      pencilTool.cleanUp();
     }
+  }
+  
+  public void cleanUp() {
+    textTool.setActive(false);
+    pencilTool.setActive(false);
+    textTool.cleanUp();
+    pencilTool.cleanUp();
   }
 }

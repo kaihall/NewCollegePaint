@@ -72,7 +72,7 @@ public class ButtonDisplay {
     comment.show();
     ToolTip commentTip = new ToolTip("Comment tool", (width*.925)+(wid)/2, height*.25, wid, hite);
     commentTip.makeText();
-    HitBox commentBox = new HitBox((width*.925)+(wid)/2, height*.25, wid, hite, width*.925, height/5, null, null);
+    HitBox commentBox = new HitBox((width*.925)+(wid)/2, height*.25, wid, hite, width*.925, height/5, commentsTool, null);
     commentBox.makeHitBox();
     
     // row 4
@@ -105,7 +105,7 @@ public class ButtonDisplay {
     save.show();
     ToolTip saveTip = new ToolTip("Save tool", (width*3/4)+(wid)/2, height*.45, wid, hite);
     saveTip.makeText();
-    HitBox saveBox = new HitBox((width*3/4)+(wid)/2, height*.45, wid, hite, width*3/4, height*.40, null, null);
+    HitBox saveBox = new HitBox((width*3/4)+(wid)/2, height*.45, wid, hite, width*3/4, height*.40, fileTool, null);
     saveBox.makeHitBox();
     
     
@@ -113,7 +113,7 @@ public class ButtonDisplay {
     upload.show();
     ToolTip uploadTip = new ToolTip("Upload tool", (width*.838)+(wid)/2, height*.45, wid, hite);
     uploadTip.makeText();
-    HitBox uploadBox = new HitBox((width*.838)+(wid)/2, height*.45, wid, hite, width*.838, height*.40, null, null);
+    HitBox uploadBox = new HitBox((width*.838)+(wid)/2, height*.45, wid, hite, width*.838, height*.40, uploadTool, null);
     uploadBox.makeHitBox();
     
     
@@ -121,7 +121,7 @@ public class ButtonDisplay {
     print.show();
     ToolTip printTip = new ToolTip("Print tool", (width*.929)+(wid)/2, height*.45, wid, hite);
     printTip.makeText();
-    HitBox printBox = new HitBox((width*.925)+(wid)/2, height*.45, wid, hite, width*.925, height*.40, null, null);
+    HitBox printBox = new HitBox((width*.925)+(wid)/2, height*.45, wid, hite, width*.925, height*.40, printTool, null);
     printBox.makeHitBox();
     
     if (currentTool != null) drawExtras();
@@ -180,6 +180,10 @@ public class ButtonDisplay {
     } 
     if (currentTool == gridTool) {
       e.gridExtra();
+      return;
+    }
+    if (currentTool == commentsTool) {
+      e.commentsExtra();
       return;
     }
   }
