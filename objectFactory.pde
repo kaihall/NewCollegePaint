@@ -13,7 +13,7 @@ This will also hold all of the basic types of shapes Processing can make
 */
 
 enum objects {
-  circle, square, pixel, rectangle, line, ellipse, triangle, curve, polygon, text, scribble
+  circle, square, pixel, rectangle, line, ellipse, triangle, curve, polygon, text, scribble, image
 }
 
 public class objectFactory {

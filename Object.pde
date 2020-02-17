@@ -6,6 +6,7 @@ public abstract class Object {
   float angle;
   int offsetX;
   int offsetY;
+  int scale;
   boolean selected;
   int maxX, maxY, minX, minY;
   
@@ -13,6 +14,7 @@ public abstract class Object {
     offsetX = 0;
     offsetY = 0;
     angle = 0;
+    scale = 1;
     selected = false;
   }
   

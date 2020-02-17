@@ -16,6 +16,7 @@ CircleTool circleTool;
 CurveTool curveTool;
 PolygonTool polygonTool;
 TextTool textTool;
+ImageTool imageTool;
 GridTool gridTool;
 
 // Global Variables
@@ -40,6 +41,7 @@ void setup(){
   curveTool = new CurveTool();
   polygonTool = new PolygonTool();
   textTool = new TextTool();
+  imageTool = new ImageTool();
   gridTool = new GridTool();
   
   gridMode = false;
@@ -163,6 +165,11 @@ void keyPressed() {
     else if (key == '7') {
       switchTool(textTool, objects.text);
     }
+    
+    else if (key == '8') {
+      switchTool(imageTool, objects.image);
+      imageTool.uploadImage();
+    }
    
     else if (key == 'x') {
       println("Goodbye :)");
@@ -181,7 +188,7 @@ void keyReleased() {
 }
 
 void switchTool(Tool t, objects type) {
-  currentTool.setActive(false);
+  if (currentTool != null) currentTool.setActive(false);
   currentTool = t;
   t.setType(type);
   t.setActive(true);
