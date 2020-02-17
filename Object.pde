@@ -15,7 +15,11 @@ public abstract class Object {
     offsetY = 0;
     angle = 0;
     scale = 1;
-    selected = false;
+    selected = true;
+    minX = MAX_INT;
+    minY = MAX_INT;
+    maxX = MIN_INT;
+    maxY = MIN_INT;
   }
   
   public void setX(int X) {x= X;}
@@ -47,16 +51,26 @@ public abstract class Object {
   }
   
   public void draw() {
-    prepColor();
     strokeWeight(2);
     pushMatrix();
     translate(offsetX,offsetY);
     rotate(angle);
+
+    prepColor();
     drawShape();
+    
+    if (selected) {
+      noFill();
+      stroke(100,100,255,100);
+      rect(minX, minY, maxX-minX, maxY-minY);
+    }
+    
     popMatrix();
   }
   
-  //public boolean 
+  public boolean underMouse() {
+    return mouseX >= minX && mouseX <= maxX && mouseY >= minY && mouseY <= maxY;
+  }
   
   public abstract void drawShape();
 }

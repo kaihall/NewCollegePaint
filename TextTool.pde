@@ -149,6 +149,7 @@ public class TextTool extends Tool {
 public class Text extends Object {
   
   int size;
+  int textHeight;
   String fontName;
   PFont font;
   String text;
@@ -159,6 +160,7 @@ public class Text extends Object {
     this.y = y;
     this.size = fontSize;
     this.fill = fill;
+    this.textHeight = size;
     
     switch (font) {
        case Serif:
@@ -177,6 +179,7 @@ public class Text extends Object {
     
     this.font = createFont(fontName,fontSize);
     this.text = text;
+    fixHeight();
   }
   
   public Text(int x, int y, int fontSize, color stroke, Font font) {
@@ -188,9 +191,22 @@ public class Text extends Object {
     textSize(size);
     textFont(font);
     text(text,x,y);
+    
+    minX = x-10;
+    minY = y-10;
+    maxX = (int)(x + textWidth(text) + size);
+    maxY = (int)(y + textHeight + size);
   }
   
   public void setText(String text) {
     this.text = text;
+    fixHeight();
+  }
+  
+  private void fixHeight() {
+    textHeight = size;
+    for (int i = 0; i < text.length(); i++) {
+      if (text.charAt(i) == '\n') textHeight += size*1.5;
+    }
   }
 }

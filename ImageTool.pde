@@ -86,11 +86,20 @@ public class image extends Object {
       w *= 0.9;
       h *= 0.9;
     }
+    
+    minX = x;
+    maxX = x + w*scale;
+    minY = y;
+    minY = y + h*scale;
   }
   
   public void drawShape() {    
     imageMode(CORNER);
     image(image,x,y,w*scale,h*scale);
+    //minX = x;
+    //maxX = x + w*scale;
+    //minY = y;
+    //minY = y + h*scale;
   }
   
 }

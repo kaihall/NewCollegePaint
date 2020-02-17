@@ -58,6 +58,13 @@ public class CurveTool extends Tool {
      
      
     }
+    
+    else if (drawing) {
+      drawing = false;
+      xPoints.clear();
+      yPoints.clear();
+      tempDraw.clear();
+    }
   }
   public Object getObject() { return null; }
 }
@@ -74,9 +81,22 @@ public class curve extends Object {
     xPoints = new ArrayList<Integer>();
     yPoints =new ArrayList<Integer>();
     
+    minX = MAX_INT;
+    minY = MAX_INT;
+    maxX = MIN_INT;
+    maxY = MIN_INT;
+    
     for (int i = 0; i < args.length; i++) {
-      if (i%2 == 0) xPoints.add(args[i]);
-      else yPoints.add(args[i]);
+      if (i%2 == 0) {
+        xPoints.add(args[i]);
+        minX = min(minX, args[i]);
+        maxX = max(maxX, args[i]);
+      }
+      else {
+        yPoints.add(args[i]);
+        minY = min(minY, args[i]);
+        maxY = max(maxY, args[i]);
+      }
     }
   }
   

@@ -93,15 +93,27 @@ public class ellipse extends Object {
     h = H;
     fill = Fill;
     Color = COlor;
+    minX = x - w;
+    minY = y - h;
+    maxX = x + w;
+    maxY = y + h;    
   }
  
   public void drawShape() {
     ellipse(x, y, w, h);
   }
   
-  public void setWidth(int W) {w = W;}
+  public void setWidth(int W) {
+    w = W;
+    maxX = x + w/2;
+    minX = x - w/2;
+  }
   
-  public void setHeight(int H) {h = H;}
+  public void setHeight(int H) {
+    h = H;
+    maxY = y + h/2;
+    minY = y - h/2;
+  }
   
   public int getWidth() {return w;}
   
@@ -137,7 +149,13 @@ public class circle extends Object {
     circle(x, y, radius);
   }
   
-  public void setRadius(int r) {radius = r;}
+  public void setRadius(int r) {
+    radius = r;
+    maxX = x + r/2;
+    minX = x - r/2;
+    maxY = y + r/2;
+    minY = y - r/2;
+  }
   
   //public void setX(int x) {}
   

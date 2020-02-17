@@ -69,6 +69,11 @@ public class polygon extends Object{
   
   //Found on Processing's website, thanks Processing
   public void drawShape() {
+    minX = MAX_INT;
+    minY = MAX_INT;
+    maxX = MIN_INT;
+    maxY = MIN_INT;
+        
     prepColor();
     float angle = TWO_PI / sides;
     beginShape();
@@ -76,6 +81,10 @@ public class polygon extends Object{
       float sx = x + cos(a) * radius;
       float sy = y + sin(a) * radius;
       vertex(sx, sy);
+      minX = (int)min(minX,sx);
+      minY = (int)min(minY,sy);
+      maxX = (int)max(maxX,sx);
+      maxY = (int)max(maxY,sy);
     }
     endShape(CLOSE);
   }

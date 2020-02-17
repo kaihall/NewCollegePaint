@@ -93,6 +93,11 @@ public class pixel extends Object {
     this.y = y;
     this.Color = stroke;
     this.fill = stroke;
+    
+    minX = x;
+    minY = y;
+    maxX = x;
+    maxY = y;
   }
   
   public void drawShape() {
@@ -113,8 +118,16 @@ public class scribble extends Object {
     yPoints =new ArrayList<Integer>();
     
     for (int i = 0; i < args.length; i++) {
-      if (i%2 == 0) xPoints.add(args[i]);
-      else yPoints.add(args[i]);
+      if (i%2 == 0) {
+        xPoints.add(args[i]);
+        minX = min(minX, args[i]);
+        maxX = max(maxX, args[i]);
+      }
+      else {
+        yPoints.add(args[i]);
+        minY = min(minY, args[i]);
+        maxY = max(maxY, args[i]);
+      }
     }
   }
   

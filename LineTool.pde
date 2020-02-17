@@ -62,19 +62,39 @@ public class Line extends Object {
     endY = eY;
     fill = Fill;
     Color = COlor;
+    minX = min(startX,endX);
+    minY = min(startY,endY);
+    maxX = max(startX,endX);
+    maxY = max(startY,endY);
   }
  
   public void drawShape() {
     line(startX, startY, endX, endY);
   }
   
-  public void setX(int x) {startX = x;}
+  public void setX(int x) {
+    startX = x;
+    minX = min(startX,endX);
+    maxX = max(startX,endX);
+  }
   
-  public void setY(int y) {startY = y;} 
+  public void setY(int y) {
+    startY = y;
+    minY = min(startY,endY);
+    maxY = max(startY,endY);
+  } 
   
-  public void setEndX(int x) {endX = x;}
+  public void setEndX(int x) {
+    endX = x;
+    minX = min(startX,endX);
+    maxX = max(startX,endX);
+  }
   
-  public void setEndY(int y) {endY = y;}
+  public void setEndY(int y) {
+    endY = y;
+    minY = min(startY,endY);
+    maxY = max(startY,endY);
+  }
   
   //public void setFill() {}
   
