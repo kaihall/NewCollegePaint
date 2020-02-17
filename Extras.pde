@@ -313,3 +313,13 @@ public class fontButton extends button{
   
   public Font getFont() {return f;}
 }
+
+
+
+public class textButton extends button {
+  
+  public textButton(String text) {
+    x1 = width*
+  }
+  
+}
