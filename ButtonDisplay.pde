@@ -72,7 +72,7 @@ public class ButtonDisplay {
     comment.show();
     ToolTip commentTip = new ToolTip("Comment tool", (width*.925)+(wid)/2, height*.25, wid, hite);
     commentTip.makeText();
-    HitBox commentBox = new HitBox((width*.925)+(wid)/2, height*.25, wid, hite, width*.925, height/5, null, null);
+    HitBox commentBox = new HitBox((width*.925)+(wid)/2, height*.25, wid, hite, width*.925, height/5, commentsTool, objects.text);
     commentBox.makeHitBox();
     
     // row 4

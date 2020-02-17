@@ -1,6 +1,7 @@
 // Items for drawing
 ArrayList<Object> thingsToDraw; // Generic List that functions as a Grouped set of shapes
-ArrayList<Object> tempDraw; //For temporary objects (ex. pencil drawing used for curve tool). Please clear after use.
+ArrayList<Object> tempDraw; // For temporary objects (ex. pencil drawing used for curve tool). Please clear after use.
+ArrayList<Object> comments; // Only draws when comments mode is on
 ToolBox box;
 ExtrasPanel panel;
 ButtonDisplay display;
@@ -17,6 +18,7 @@ CurveTool curveTool;
 PolygonTool polygonTool;
 TextTool textTool;
 ImageTool imageTool;
+CommentsTool commentsTool;
 GridTool gridTool;
 
 // Global Variables
@@ -33,6 +35,7 @@ void setup(){
   
   thingsToDraw = new ArrayList<Object>();
   tempDraw = new ArrayList<Object>();
+  comments = new ArrayList<Object>();
   
   pencilTool = new PencilTool();
   lineTool = new LineTool();
@@ -42,6 +45,7 @@ void setup(){
   polygonTool = new PolygonTool();
   textTool = new TextTool();
   imageTool = new ImageTool();
+  commentsTool = new CommentsTool();
   gridTool = new GridTool();
   
   gridMode = false;
@@ -65,6 +69,7 @@ void setup(){
   background(255);
   if (gridMode) gridTool.drawGrid();
   thingsToDraw.get(0).draw();
+  basicUI.draw();
 }
 
 
@@ -112,6 +117,13 @@ void draw(){
       }
     } else {
       currentTool.sketch(); 
+    }
+    
+    // Draw comments (if on)
+    if (commentsMode) {
+      for (Object o : comments) {
+        o.draw();
+      }
     }
     
     // Draw the grid (if on)
@@ -169,6 +181,19 @@ void keyPressed() {
     else if (key == '8') {
       switchTool(imageTool, objects.image);
       imageTool.uploadImage();
+    }
+    
+    else if (key == '9') {
+       if (commentsMode) commentsMode = false;
+       else commentsMode = true;
+    }
+    
+    else if (key == ',') {
+      commentsTool.setTool(CommentsToolMode.Pencil);
+    }
+    
+    else if (key == '.') {
+      commentsTool.setTool(CommentsToolMode.Text);
     }
    
     else if (key == 'x') {

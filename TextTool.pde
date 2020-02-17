@@ -31,11 +31,15 @@ public class TextTool extends Tool {
     shift = false;
   }
   
+  public void sketch() {
+    sketch(false, this.fill);
+  }
+  
   /*
    * If working on text right now, draw a text box and check for input. Stop working on the current Text object when the mouse is clicked.
    * If not working on text right now, create a new text box when the user clicks on the canvas.
   */
-  public void sketch() {
+  public void sketch(boolean comment, color fill) {
     if (isActive) {
       sinceLastClick++;
       sinceLastPress++;
@@ -53,7 +57,14 @@ public class TextTool extends Tool {
           x = mouseX;
           y = mouseY;
           working = new Text(x,y,size,fill,font);
-          thingsToDraw.add(working);
+          
+          if (comment) {
+            comments.add(working);
+          }
+          
+          else {
+            thingsToDraw.add(working);
+          }
         }
         
         else {

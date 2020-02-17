@@ -1,16 +1,41 @@
-public enum CommentsModeTool { Pencil, Text }
+public enum CommentsToolMode { Pencil, Text }
 
 public class CommentsTool extends Tool {
   
+  private boolean pencil;
+  
   public CommentsTool() {
-    // stubbed
+    pencil = true;
   }
   
   public void sketch() {
-    // stubbed
+    if (isActive) {
+      if (pencil) {
+        pencilTool.PIXELMODE = false;
+        pencilTool.sketch(true, stroke);
+      }
+      
+      else {
+        textTool.sketch(true, stroke);
+      }
+    }
   }
   
-  public void setTool(CommentsModeTool ctm) {
-    // stubbed
+  public void setFill(color c) {
+    stroke = c;
+  }
+  
+  public void setTool(CommentsToolMode ctm) {
+    if (ctm == CommentsToolMode.Pencil) {
+      pencil = true;
+      textTool.setActive(false);
+      pencilTool.setActive(true);
+    }
+    
+    else {
+      pencil = false;
+      textTool.setActive(true);
+      pencilTool.setActive(false);
+    }
   }
 }

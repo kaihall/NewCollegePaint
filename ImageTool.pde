@@ -33,6 +33,8 @@ public class ImageTool extends Tool {
           success = false;
         }
     }
+    
+    else System.out.println("Load cancelled.");
   }
   
   private void addToDirectory(File f) {

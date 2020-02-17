@@ -22,7 +22,11 @@ public class PencilTool extends Tool {
     yPoints = new ArrayList<Integer>();
   }  
   
-  void sketch(){
+  void sketch () {
+    sketch(false, this.stroke);
+  }
+  
+  void sketch(boolean comment, color stroke){
     if(isActive){
       if(mouseX < width*.75 && mousePressed){
         if (PIXELMODE) {
@@ -64,8 +68,14 @@ public class PencilTool extends Tool {
          
         xPoints.clear();
         yPoints.clear();
-       
-        thingsToDraw.add(of.createObject(objects.scribble,fill,stroke,args2));
+        
+        if (comment) {
+          comments.add(of.createObject(objects.scribble,fill,stroke,args2));
+        }
+        
+        else {
+          thingsToDraw.add(of.createObject(objects.scribble,fill,stroke,args2));
+        }
      }
     } 
     
