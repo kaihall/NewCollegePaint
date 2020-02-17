@@ -9,10 +9,17 @@ import javax.imageio.ImageIO;
 public class ImageTool extends Tool {
   
   JFileChooser fileChooser;
+  ImageFilter imageFilter;
+  //String directory;
   
   public ImageTool() {
     fileChooser = new JFileChooser();
-    fileChooser.addChoosableFileFilter(new ImageFilter());
+    imageFilter = new ImageFilter();
+    fileChooser.addChoosableFileFilter(imageFilter);
+    
+    //find data directory
+    //directory = (new File("pencil.png")).getAbsolutePath();
+    //directory = directory.substring(0,directory.lastIndexOf('\\'));
   }
   
   public void sketch() {}
@@ -32,17 +39,17 @@ public class ImageTool extends Tool {
 
     //read image
     try{
-      image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+      //image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
       image = ImageIO.read(f);
       System.out.println("Reading complete.");
     }catch(IOException e){
       System.out.println("Error: "+e);
     }
-
+    
     //write image
     try{
-      f = new File(System.getProperty("user.dir") + "\\data\\" + f.getName());  //output file path
-      ImageIO.write(image, (new ImageFilter()).getExtension(f), f);
+      f = new File(dataPath("") + "\\" + f.getName());  //output file path
+      ImageIO.write(image, imageFilter.getExtension(f), f);
       System.out.println("Writing complete.");
     }catch(IOException e){
       System.out.println("Error: "+e);
@@ -64,11 +71,16 @@ public class image extends Object {
     this.y = y;
     this.w = image.width;
     this.h = image.height;
+    
+    while (this.w + this.x > width*0.75 || this.h + this.y > height) {
+      w *= 0.9;
+      h *= 0.9;
+    }
   }
   
-  public void drawShape() {
+  public void drawShape() {    
     imageMode(CORNER);
-    image(image,x,y,min(w*scale,width*0.75-(x+w*scale)),min(h*scale,height-(y+h*scale)));
+    image(image,x,y,w*scale,h*scale);
   }
   
 }
