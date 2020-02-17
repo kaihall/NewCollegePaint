@@ -185,9 +185,9 @@ public class colorSelectorButton extends button {
     sinceLastPress++;
     fill(255);  
     rect(x1, y1, x2, y2);
-    fill(0);
-    textSize(width/60);
-    text("*", x1+width/128, y1+height/216);
+    fill(c);
+    textSize(width/40);
+    text("*", x1+width/128, y1+height/540);
     if (drawCP) {
       setColor();
       fill(0);
