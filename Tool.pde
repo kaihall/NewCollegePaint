@@ -27,6 +27,10 @@ public abstract class Tool {
     stroke = c;
   }
   
+  public void setFill(color c) {
+    fill = c;
+  }
+  
   public void setType(objects Type) {
     this.type = Type;
   }

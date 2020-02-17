@@ -3,11 +3,11 @@ public class Extras{
   public Extras() {  }
   
   void pencilExtra(){
-    basicColorTiles(0);
+    basicColorTiles(0,true);
   }
   
   void lineExtra(){
-    basicColorTiles(0);
+    basicColorTiles(0,true);
     
     textSize(width/39);
     text("Line Maker!", width*.835, height*.62);
@@ -30,19 +30,19 @@ public class Extras{
     text("Make this line!", width*.837, height*.78);
   }
   void curveExtra(){
-    basicColorTiles(0);    
+    basicColorTiles(0,true);    
   }
   
   void rectangleExtra(){
     fill(0);
     textSize(width/64);
     text("Outline", width*.835, height*.55);
-    basicColorTiles(height/22);
+    basicColorTiles(height/22,true);
     
     fill(0);
     textSize(width/64);
     text("Fill", width*.85, height*.65);
-    basicColorTiles(height/7);
+    basicColorTiles(height/7,false);
     
     fill(0);
     textSize(width/60);
@@ -53,12 +53,12 @@ public class Extras{
     fill(0);
     textSize(width/64);
     text("Outline", width*.835, height*.55);
-    basicColorTiles(height/22);
+    basicColorTiles(height/22,true);
     
     fill(0);
     textSize(width/64);
     text("Fill", width*.85, height*.65);
-    basicColorTiles(height/7);
+    basicColorTiles(height/7,false);
     
     fill(0);
     textSize(width/60);
@@ -90,7 +90,7 @@ public class Extras{
     
   }
   
-  void basicColorTiles(int yOffset) {
+  void basicColorTiles(int yOffset, boolean stroke) {
     ArrayList<button> listOfButtons = new ArrayList<button>();
     //fill(255,0,0);
     listOfButtons.add(new button((width*3/4),            height*.55 + yOffset, width/40, width/40, color(255, 0, 0)));
@@ -116,7 +116,7 @@ public class Extras{
     
     
     for (button b : listOfButtons) {
-      if (b.isClicked()) b.setColor();
+      if (b.isClicked()) b.setColor(stroke);
       b.draw();
     }
   }
@@ -140,7 +140,10 @@ public class button {
     rect(x1,y1,x2,y2);
   }
   
-  void setColor() { currentTool.setStroke(c); }
+  void setColor(boolean stroke) { 
+    if (stroke) currentTool.setStroke(c); 
+    else currentTool.setFill(c);
+  }
   
   boolean isClicked() {
     if ((mouseX >= x1) && (mouseX <= (x1 + x2)) && mousePressed) {
