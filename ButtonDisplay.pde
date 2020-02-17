@@ -81,7 +81,7 @@ public class ButtonDisplay {
     select.show();
     ToolTip selectTip = new ToolTip("Select tool", (width*3/4)+(wid)/2, height*.35, wid, hite);
     selectTip.makeText();
-    HitBox selectBox = new HitBox((width*3/4)+(wid)/2, height*.35, wid, hite, width*3/4, height*.30, null, null);
+    HitBox selectBox = new HitBox((width*3/4)+(wid)/2, height*.35, wid, hite, width*3/4, height*.30, selectTool, null);
     selectBox.makeHitBox();
     
     

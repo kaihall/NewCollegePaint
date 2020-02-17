@@ -20,6 +20,7 @@ TextTool textTool;
 ImageTool imageTool;
 CommentsTool commentsTool;
 GridTool gridTool;
+SelectTool selectTool;
 
 // Global Variables
 boolean gridMode;
@@ -33,7 +34,7 @@ void setup(){
   background(255);
   //frameRate(-1); //cap framerate at 60 to keep the input delay from mucking up
   frameRate(60);
-  inputDelay = int(frameRate/5); //used in several tools to keep them from registering repeated user input.
+  inputDelay = int(frameRate/2); //used in several tools to keep them from registering repeated user input.
   
   thingsToDraw = new ArrayList<Object>();
   tempDraw = new ArrayList<Object>();
@@ -49,6 +50,7 @@ void setup(){
   imageTool = new ImageTool();
   commentsTool = new CommentsTool();
   gridTool = new GridTool();
+  selectTool = new SelectTool();
   
   gridMode = false;
   commentsMode = true;
@@ -79,7 +81,7 @@ void setup(){
 
 
 void draw(){
-  inputDelay = (int)(frameRate/5); // This updates the real inputDelay Value
+  inputDelay = (int)(frameRate/2); // This updates the real inputDelay Value
   
   // This means the user is not inside the toolbar area
   if (mouseX <= width*0.748 && currentTool != null) {

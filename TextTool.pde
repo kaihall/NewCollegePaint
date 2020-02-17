@@ -103,7 +103,7 @@ public class TextTool extends Tool {
    * Others (not coded): Adds the character to the text box. Makes it uppercase if shift is down. Adds a line break if it gets to the edge of the canvas.
   */
   private void checkKeys() {
-    if (keyPressed && sinceLastPress > inputDelay/2) {
+    if (keyPressed && sinceLastPress > inputDelay/3) {
       sinceLastPress = 0;
       
       if (key == BACKSPACE) {
