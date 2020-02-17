@@ -51,6 +51,11 @@ public class PolygonTool extends Tool {
     }
   }
   
+  public void setSides(int n) {
+    sides = max(n,3);
+    sides = min(sides,12);
+  }
+  
   public Object getObject() { return working; }
   public boolean drawing() { return drawing; }
   public boolean isInBounds(int x, int y, int MaxX, int MaxY) {

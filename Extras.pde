@@ -9,6 +9,7 @@ public class Extras{
   void lineExtra(){
     basicColorTiles(0,true);
     
+    /*
     textSize(width/39);
     text("Line Maker!", width*.835, height*.62);
     fill(0,0,255,20);
@@ -28,6 +29,7 @@ public class Extras{
     rect(width*.834, height*.78, width/13, width/60);
     fill(0);
     text("Make this line!", width*.837, height*.78);
+    */
   }
   void curveExtra(){
     basicColorTiles(0,true);    
@@ -67,12 +69,34 @@ public class Extras{
   }
   
   void polygonExtra(){
+    fill(0);
+    textSize(width/64);
+    text("Outline", width*.835, height*.55);
+    basicColorTiles(height/22,true);
     
+    fill(0);
+    textSize(width/64);
+    text("Fill", width*.85, height*.65);
+    basicColorTiles(height/7,false);
     
+    fill(0);
+    textSize(width/64);
+    text("Sides:", width*.76, height*.75);
+    fill(0,0,255,20);
+    rectMode(CORNER);
+    rect(width*.81, height*.75, height/22, height/22);
+    fill(0);
+    text(String.valueOf(polygonTool.sides), width*.815, height*.751);
+    button inc = new incrementButton(width*.835, height*0.75, height/22, height/44, color(0,0,255,20), true);
+    button dec = new incrementButton(width*.835, height*0.774, height/22, height/44, color(0,0,255,20), false);
+    inc.draw();
+    dec.draw();
+    if (inc.isClicked()) polygonTool.setSides(polygonTool.sides+1);
+    if (dec.isClicked()) polygonTool.setSides(polygonTool.sides-1);
   }
   
   void textExtra(){
-    
+    basicColorTiles(0,false);
     
   }
   
@@ -157,6 +181,8 @@ public class button {
   }
 }
 
+
+
 public class colorSelectorButton extends button {
   ColorPicker cp = new ColorPicker(width-width/4+width/300, height/2 + height/300, width/4, height/3, 0);
   boolean drawCP = false;
@@ -194,6 +220,7 @@ public class colorSelectorButton extends button {
     if (drawCP) {
       setColor();
       fill(0);
+      rectMode(CORNER);
       rect(width-width/4, height/2 + height/300, width/4, height/3);
       cp.draw();
     }
@@ -212,4 +239,40 @@ public class colorSelectorButton extends button {
     selected = false;
     return false;
   }
+}
+
+
+public class incrementButton extends button{
+  
+  boolean increase;
+  
+  public incrementButton(float X1,float Y1, float X2, float Y2, color C, boolean increase) {
+    super(X1, Y1, X2, Y2, C);
+    this.increase = increase;
+  }
+  
+  public void draw() {
+    stroke(0);
+    fill(c);
+    rect(x1, y1, x2, y2);
+    fill(0);
+    textSize(20);
+    textFont(createFont("Arial.ttf",20));
+    
+    char display = (increase) ? '+' : '-';
+    
+    text(display, x1 + (x1+x2)/2, y1 + (y1+y2)/2);
+  }
+}
+
+
+public class fontButton extends button{
+  
+  Font f;
+  
+  public fontButton(float X1,float Y1, float X2, float Y2, color C, Font f) {
+    super(X1, Y1, X2, Y2, C);
+    this.f = f;
+  }
+  
 }
