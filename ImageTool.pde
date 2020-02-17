@@ -10,16 +10,14 @@ public class ImageTool extends Tool {
   
   JFileChooser fileChooser;
   ImageFilter imageFilter;
-  //String directory;
+  boolean success;
   
   public ImageTool() {
     fileChooser = new JFileChooser();
     imageFilter = new ImageFilter();
-    fileChooser.addChoosableFileFilter(imageFilter);
+    fileChooser.setFileFilter(imageFilter);
     
-    //find data directory
-    //directory = (new File("pencil.png")).getAbsolutePath();
-    //directory = directory.substring(0,directory.lastIndexOf('\\'));
+    success = false;
   }
   
   public void sketch() {}
@@ -30,7 +28,10 @@ public class ImageTool extends Tool {
     if (returnVal == JFileChooser.APPROVE_OPTION) {
         File file = fileChooser.getSelectedFile();
         addToDirectory(file);
-        thingsToDraw.add(new image(file.getName(), 0, 0));
+        if (success) {
+          thingsToDraw.add(new image(file.getName(), 0, 0));
+          success = false;
+        }
     }
   }
   
@@ -49,7 +50,14 @@ public class ImageTool extends Tool {
     //write image
     try{
       f = new File(dataPath("") + "\\" + f.getName());  //output file path
-      ImageIO.write(image, imageFilter.getExtension(f), f);
+      
+      if (image != null) {
+        ImageIO.write(image, imageFilter.getExtension(f), f);
+        success = true;
+      }
+      
+      else System.out.println("Load Failed!");
+      
       System.out.println("Writing complete.");
     }catch(IOException e){
       System.out.println("Error: "+e);
