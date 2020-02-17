@@ -43,8 +43,8 @@ public class HitBox {
   
   void updateTool() {
     sinceLastClick++;
-    if (mousePressed && mouseButton == LEFT && sinceLastClick > inputDelay) {
-      if (tool != null && (currentTool != tool || currentTool == gridTool)) {
+    if (mousePressed && mouseButton == LEFT) {
+      if (tool != null && currentTool != tool) {
         sinceLastClick = 0;
         switchTool(tool, objectType); 
       }
@@ -67,39 +67,5 @@ public class HitBox {
       it.uploadImage();
     }
     */
-    
-    if (currentTool == gridTool) {
-      if (gridMode) gridMode = false;
-      else gridMode = true;
-      
-      // White out the canvas
-      noStroke();
-      fill(255,255,255); // This covers the canvas
-      rect(0, 0, width*0.748, height);
-      
-      // Draw all previous Objects to the canvas
-      if (thingsToDraw != null) {
-        for (Object o : thingsToDraw) {
-          o.draw();
-        }
-      }
-      if (tempDraw != null) {
-        for (Object o : tempDraw) {
-          o.draw();
-        }
-      }
-      
-      // Draw comments (if on)
-      if (commentsMode) {
-        for (Object o : comments) {
-          o.draw();
-        }
-      }
-      
-      // Draw the grid (if on)
-      if (gridMode) {
-        gridTool.drawGrid();
-      }
-    }
   }  
 }

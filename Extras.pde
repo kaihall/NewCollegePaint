@@ -122,7 +122,57 @@ public class Extras{
   }
   
   void gridExtra() {
+    textButton b = new textButton("Toggle Grid Mode", int(height*0.75));
+    b.draw();
+    if (b.isClicked()) {
+      if (gridMode) gridMode = false;
+      else gridMode = true;
+      
+      // White out the canvas
+      noStroke();
+      fill(255,255,255); // This covers the canvas
+      rect(0, 0, width*0.748, height);
+      
+      // Draw all previous Objects to the canvas
+      if (thingsToDraw != null) {
+        for (Object o : thingsToDraw) {
+          o.draw();
+        }
+      }
+      if (tempDraw != null) {
+        for (Object o : tempDraw) {
+          o.draw();
+        }
+      }
+      
+      // Draw comments (if on)
+      if (commentsMode) {
+        for (Object o : comments) {
+          o.draw();
+        }
+      }
+      
+      // Draw the grid (if on)
+      if (gridMode) {
+        gridTool.drawGrid();
+      }
+    }
+  }
+  
+  void fileExtra() {
     
+  }
+  
+  void printExtra() {
+    textButton b = new textButton("Print Drawing", int(height*0.75));
+    b.draw();
+    if (b.isClicked()) printTool.print();
+  }
+  
+  void uploadExtra() {
+    textButton b = new textButton("Upload Drawing", int(height*0.75));
+    b.draw();
+    if (b.isClicked()) uploadTool.upload();
   }
   
   void basicColorTiles(int yOffset, boolean stroke) {

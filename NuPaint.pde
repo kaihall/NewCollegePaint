@@ -21,6 +21,9 @@ ImageTool imageTool;
 CommentsTool commentsTool;
 GridTool gridTool;
 SelectTool selectTool;
+FileTool fileTool;
+UploadTool uploadTool;
+PrintTool printTool;
 
 // Global Variables
 boolean gridMode;
@@ -51,6 +54,9 @@ void setup(){
   commentsTool = new CommentsTool();
   gridTool = new GridTool();
   selectTool = new SelectTool();
+  fileTool = new FileTool();
+  uploadTool = new UploadTool();
+  printTool = new PrintTool();
   
   gridMode = false;
   commentsMode = true;

@@ -124,47 +124,63 @@ public class ButtonDisplay {
     HitBox printBox = new HitBox((width*.925)+(wid)/2, height*.45, wid, hite, width*.925, height*.40, null, null);
     printBox.makeHitBox();
     
-    if (currentTool != null) drawExtras(currentTool.getType());
+    if (currentTool != null) drawExtras();
   } 
   
-  void drawExtras(objects objectType) {
+  void drawExtras() {
     Extras e = new Extras();
     
-    if (objectType == objects.pixel) {
+    if (currentTool == pencilTool) {
       e.pencilExtra();
       return;
     }
-    if (objectType == objects.line) {
+    if (currentTool == lineTool) {
       e.lineExtra();
       return;
     }
-    if (objectType == objects.curve) {
+    if (currentTool == curveTool) {
       e.curveExtra();
       return;
     }
-    if (objectType == objects.rectangle) {
+    if (currentTool == rectTool) {
       e.rectangleExtra();
       return;
     }
-    if (objectType == objects.ellipse) {
+    if (currentTool == circleTool) {
       e.circleExtra();
       return;
     }
-    if (objectType == objects.polygon) {
+    if (currentTool == polygonTool) {
       e.polygonExtra();
       return;
     }
-    if (objectType == objects.text) {
+    if (currentTool == textTool) {
       e.textExtra();
       return;
     }
-    if (objectType == objects.image) {
+    if (currentTool == imageTool) {
       e.imageExtra();
       return;
     }
-    if (objectType == objects.grid) {
+    if (currentTool == selectTool) {
+      e.selectExtra();
+      return;
+    }  
+    if (currentTool == fileTool) {
+      e.fileExtra();
+      return;
+    } 
+    if (currentTool == printTool) {
+      e.printExtra();
+      return;
+    } 
+    if (currentTool == uploadTool) {
+      e.uploadExtra();
+      return;
+    } 
+    if (currentTool == gridTool) {
       e.gridExtra();
       return;
-    }                               
+    }
   }
 }
