@@ -11,12 +11,13 @@ public class ImageTool extends Tool {
   JFileChooser fileChooser;
   ImageFilter imageFilter;
   boolean success;
+  String fileName;
   
   public ImageTool() {
     fileChooser = new JFileChooser();
     imageFilter = new ImageFilter();
     fileChooser.setFileFilter(imageFilter);
-    
+    fileName = "";
     success = false;
   }
   
@@ -27,9 +28,10 @@ public class ImageTool extends Tool {
 
     if (returnVal == JFileChooser.APPROVE_OPTION) {
         File file = fileChooser.getSelectedFile();
+        fileName = file.getName().substring(0,file.getName().lastIndexOf(".")-1) + random(0,999999) + "." + imageFilter.getExtension(file);
         addToDirectory(file);
         if (success) {
-          thingsToDraw.add(new image(file.getName(), 0, 0));
+          thingsToDraw.add(new image(fileName, 0, 0));
           success = false;
         }
     }
@@ -51,7 +53,8 @@ public class ImageTool extends Tool {
     
     //write image
     try{
-      f = new File(dataPath("") + "\\" + f.getName());  //output file path
+      f = new File(dataPath("") + "//" + fileName);  //output file path
+      System.out.println(f.getPath());
       
       if (image != null) {
         ImageIO.write(image, imageFilter.getExtension(f), f);

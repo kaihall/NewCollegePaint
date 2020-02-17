@@ -4,6 +4,15 @@ public class Extras{
   
   void pencilExtra(){
     basicColorTiles(0,true);
+    
+    imageButton pixel = new imageButton("data/pencilPixel.png", width*0.75 + width/12 - 5, height*0.65);
+    imageButton scribble = new imageButton("data/pencilScribble.png", width*0.75 + width/8 + 5, height*0.65);
+    
+    pixel.draw();
+    scribble.draw();
+    
+    if (pixel.isClicked()) pencilTool.PIXELMODE = true;
+    if (scribble.isClicked()) pencilTool.PIXELMODE = false;
   }
   
   void lineExtra(){
