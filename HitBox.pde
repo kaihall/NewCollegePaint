@@ -41,7 +41,7 @@ public class HitBox {
   
   void updateTool() {
     if (mousePressed && mouseButton == LEFT) {
-      if (tool != null && currentTool != tool) {
+      if (tool != null && (currentTool != tool || currentTool == gridTool)) {
         switchTool(tool, objectType); 
       }
     }
@@ -63,5 +63,10 @@ public class HitBox {
       it.uploadImage();
     }
     */
+    
+    if (currentTool == gridTool) {
+      if (gridMode) gridMode = false;
+      else gridMode = true;
+    }
   }  
 }
