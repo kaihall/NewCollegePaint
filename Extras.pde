@@ -97,7 +97,17 @@ public class Extras{
   
   void textExtra(){
     basicColorTiles(0,false);
+
+    ArrayList<fontButton> fontButtons = new ArrayList<fontButton>();
+    fontButtons.add(new fontButton(width*.8, height*.65, height/22, height/22, color(255), Font.SansSerif));
+    fontButtons.add(new fontButton(width*.8+(height/22)+10, height*.65, height/22, height/22, color(255), Font.Serif));
+    fontButtons.add(new fontButton(width*.8+(height/11)+20, height*.65, height/22, height/22, color(255), Font.Fun));
+    fontButtons.add(new fontButton(width*.8+(3*height/22)+30, height*.65, height/22, height/22, color(255), Font.Cursive));
     
+    for (fontButton b : fontButtons) {
+      b.draw();
+      if (b.isClicked()) textTool.setFont(b.getFont());
+    }
   }
   
   void imageExtra(){
@@ -117,19 +127,19 @@ public class Extras{
   void basicColorTiles(int yOffset, boolean stroke) {
     ArrayList<button> listOfButtons = new ArrayList<button>();
     //fill(255,0,0);
-    listOfButtons.add(new button((width*3/4),            height*.55 + yOffset, width/40, width/40, color(255, 0, 0)));
+    listOfButtons.add(new button((width*3/4)+10,            height*.55 + yOffset, width/40, width/40, color(255, 0, 0)));
     //fill(255,165,0);
-    listOfButtons.add(new button((width*3/4+width/40),   height*.55 + yOffset, width/40, width/40, color(255, 165, 0)));
+    listOfButtons.add(new button((width*3/4+width/40)+10,   height*.55 + yOffset, width/40, width/40, color(255, 165, 0)));
     //fill(255,255,0);
-    listOfButtons.add(new button(width*3/4+width/20,     height*.55 + yOffset, width/40, width/40, color (255, 255, 0)));
+    listOfButtons.add(new button(width*3/4+width/20+10,     height*.55 + yOffset, width/40, width/40, color (255, 255, 0)));
     //fill(0,255,0);
-    listOfButtons.add(new button(width*3/4+width*.075,   height*.55 + yOffset, width/40, width/40, color(0, 255, 0)));
+    listOfButtons.add(new button(width*3/4+width*.075+10,   height*.55 + yOffset, width/40, width/40, color(0, 255, 0)));
     //fill(0,0,255);
-    listOfButtons.add(new button(width*3/4+width/10,     height*.55 + yOffset, width/40, width/40, color(0, 0, 255)));
+    listOfButtons.add(new button(width*3/4+width/10+10,     height*.55 + yOffset, width/40, width/40, color(0, 0, 255)));
     //fill(128,0,128);
-    listOfButtons.add(new button(width*3/4+width*.125,   height*.55 + yOffset, width/40, width/40, color(128,0,128)));
+    listOfButtons.add(new button(width*3/4+width*.125+10,   height*.55 + yOffset, width/40, width/40, color(128,0,128)));
     //fill(0);
-    listOfButtons.add(new button(width*3/4+width*.15,    height*.55 + yOffset, width/40, width/40, color(0, 0, 0)));
+    listOfButtons.add(new button(width*3/4+width*.15+10,    height*.55 + yOffset, width/40, width/40, color(0, 0, 0)));
     stroke(0);
     //fill(255, 0, 0, 0);
     //listOfButtons.add(new button(width*3/4+width*.175,   height*.55 + yOffset, width/40, width/40, color(255, 0, 0)));
@@ -256,12 +266,12 @@ public class incrementButton extends button{
     fill(c);
     rect(x1, y1, x2, y2);
     fill(0);
-    textSize(20);
+    textSize(10);
     textFont(createFont("Arial.ttf",20));
     
     char display = (increase) ? '+' : '-';
     
-    text(display, x1 + (x1+x2)/2, y1 + (y1+y2)/2);
+    text(display, x1 + 20, y1);
   }
 }
 
@@ -269,10 +279,37 @@ public class incrementButton extends button{
 public class fontButton extends button{
   
   Font f;
+  String fontName;
   
   public fontButton(float X1,float Y1, float X2, float Y2, color C, Font f) {
     super(X1, Y1, X2, Y2, C);
     this.f = f;
+    
+    switch (f) {
+      case Serif:
+        fontName = "TimesNewRoman.ttf";
+        break;
+      case Fun:
+        fontName = "COMIC.TTF";
+        break;
+      case Cursive:
+        fontName = "MrsSaintDelafield.ttf";
+        break;
+      default:
+        fontName = "Arial.ttf";
+        break;
+    }
   }
   
+  public void draw() {
+    stroke(0);
+    fill(c);
+    rect(x1, y1, x2, y2);
+    fill(0);
+    textSize(25);
+    textFont(createFont(fontName,25));
+    text("Aa", x1 + 10, y1 + 10);
+  }
+  
+  public Font getFont() {return f;}
 }

@@ -29,6 +29,7 @@ public class TextTool extends Tool {
     sinceLastPress = 0;
     fill = color(0);
     shift = false;
+    textAlign(int(width*.375), TOP);
   }
   
   public void sketch() {
