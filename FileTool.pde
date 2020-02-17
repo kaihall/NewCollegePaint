@@ -1,7 +1,7 @@
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
-public enum SaveType { PROJ, PNG, JPG, SVG, PDF }
+public enum SaveType { Project, Image }
 
 public class FileTool extends Tool {
   

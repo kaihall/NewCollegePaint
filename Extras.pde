@@ -116,10 +116,16 @@ public class Extras{
     if (b.isClicked()) imageTool.uploadImage();
   }
   
+  /*****************************************/
+  /*****************DO THIS*****************/
+  /*****************************************/
   void selectExtra(){
     
     
   }
+  /*****************************************/
+  /*****************************************/
+  /*****************************************/
   
   void commentsExtra() {
     basicColorTiles(0,true);
@@ -208,7 +214,17 @@ public class Extras{
   }
   
   void fileExtra() {
+    textButton proj = new textButton("Save as Project", height*0.65);
+    textButton img = new textButton("Save as Image", height*0.75);
+    textButton load = new textButton("Load Project", height*0.85);
     
+    proj.draw();
+    img.draw();
+    load.draw();
+    
+    if (proj.isClicked()) fileTool.save(SaveType.Project);
+    if (img.isClicked()) fileTool.save(SaveType.Image);
+    if (load.isClicked()) fileTool.load();
   }
   
   void printExtra() {
