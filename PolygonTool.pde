@@ -44,6 +44,11 @@ public class PolygonTool extends Tool {
     }
   }
   
+  public void cleanUp() {
+    drawing = false;
+    thingsToDraw.remove(working);
+  }
+  
   public Object getObject() { return working; }
   public boolean drawing() { return drawing; }
   public boolean isInBounds(int x, int y, int MaxX, int MaxY) {

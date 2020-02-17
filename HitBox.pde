@@ -48,8 +48,10 @@ public class HitBox {
   }
   
   void switchTool(Tool t, objects type) {
-    if (currentTool != null)
+    if (currentTool != null) {
       currentTool.setActive(false);
+      currentTool.cleanUp();
+    }
     currentTool = t;
     t.setType(type);
     t.setActive(true);

@@ -66,6 +66,14 @@ public class CurveTool extends Tool {
       tempDraw.clear();
     }
   }
+  
+  public void cleanUp() {
+    drawing = false;
+    xPoints.clear();
+    yPoints.clear();
+    tempDraw.clear();
+  }
+  
   public Object getObject() { return null; }
 }
 

@@ -48,6 +48,11 @@ public class RectangleTool extends Tool {
     }
   }
   
+  public void cleanUp() {
+    drawing = false;
+    thingsToDraw.remove(working);
+  }
+  
   void drawLastRectangle() {
     int newX = last.getX()+20+last.getWidth() >= width*0.75 ? 0 : last.getX()+20;
     int newY = last.getX()+20+last.getWidth() >= width*0.75 ? 0 : last.getY()+20;

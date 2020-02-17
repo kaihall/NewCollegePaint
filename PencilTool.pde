@@ -83,6 +83,13 @@ public class PencilTool extends Tool {
   }
   
   public Object getObject() { return null; }
+  
+  public void cleanUp() {
+    drawing = false;
+    xPoints.clear();
+    yPoints.clear();
+    tempDraw.clear();
+  }
 }
 
 

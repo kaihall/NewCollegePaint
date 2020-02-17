@@ -42,6 +42,11 @@ public class LineTool extends Tool {
     thingsToDraw.add(new Line(x1,y1,fill,stroke,x2,y2));
   }
   
+  public void cleanUp() {
+    drawing = false;
+    thingsToDraw.remove(working);
+  }
+  
   public Object getObject() { return working; }
 }
 

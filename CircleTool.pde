@@ -27,9 +27,9 @@ public class CircleTool extends Tool {
    */
   void sketch(){
     sinceLastClick++;
-    if (mouseX < width*.75 && mousePressed && sinceLastClick > inputDelay) {
-      sinceLastClick = 0;
-      if (isActive) {
+    if (isActive) {
+      if (mouseX < width*.75 && mousePressed && sinceLastClick > inputDelay) {
+        sinceLastClick = 0;
         if (drawing) {
           drawing = false;
           last = working;
@@ -66,6 +66,11 @@ public class CircleTool extends Tool {
     ellipse addThis = new ellipse(newX,newY,last.getFill(),last.getStroke(),last.getWidth(),last.getHeight());
     last = addThis;
     thingsToDraw.add(addThis);
+  }
+  
+  public void cleanUp() {
+    drawing = false;
+    thingsToDraw.remove(working);
   }
   
   public Object getObject() { return working; }

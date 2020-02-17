@@ -49,6 +49,8 @@ public abstract class Tool {
     return false; 
   }
   
+  public void cleanUp() {}
+  
   public boolean isInBounds(int x, int y, int maxX, int maxY) { return false; }
   
 }

@@ -76,6 +76,13 @@ public class TextTool extends Tool {
     }
   }
   
+  public void cleanUp() {
+    drawing = false;
+    thingsToDraw.remove(working);
+    text = "";
+    textHeight = 20;
+  }
+  
   /*
    * Draws a transparent box with semi-transparent black outline around the text
   */
