@@ -111,8 +111,9 @@ public class Extras{
   }
   
   void imageExtra(){
-    
-    
+    textButton b = new textButton("Load Image", int(height*0.75));
+    b.draw();
+    if (b.isClicked()) imageTool.uploadImage();
   }
   
   void selectExtra(){
@@ -318,8 +319,29 @@ public class fontButton extends button{
 
 public class textButton extends button {
   
-  public textButton(String text) {
-    x1 = width*
+  String label;
+  
+  public textButton(String text, int y) {
+    super(0,0,0,0,color(255));
+    x1 = width*0.8;
+    x2 = width - width*0.75 - width*0.1;
+    y1 = y;
+    y2 = 30;
+    label = text;
   }
   
+  public void draw() {
+    //textMode(CENTER);
+    textAlign(CENTER);
+    fill(255);
+    stroke(0);
+    rect(x1,y1-7,x2,y2);
+    fill(0);
+    textSize(25);
+    textFont(createFont("Arial.ttf",25));
+    text(label, x1 + x2/2, y1 + y2/2);
+    rectMode(CORNER);
+    //textMode(CORNER);
+    textAlign(int(width*.375), TOP);
+  }
 }

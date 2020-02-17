@@ -56,10 +56,12 @@ public class HitBox {
     t.setType(type);
     t.setActive(true);
     
+    /*
     // This only runs for the image tool. This is only run when the tool is switched to the image tool
     if (objectType == objects.image) {
       ImageTool it = (ImageTool)t;
       it.uploadImage();
     }
+    */
   }  
 }
