@@ -91,16 +91,17 @@ public class ButtonDisplay {
     gridTip.makeText();
     HitBox gridBox = new HitBox((width*.838)+(wid)/2, height*.35, wid, hite, width*.838, height*.30, gridTool, objects.grid);
     gridBox.makeHitBox();
-    
+    /*
     ButtonThumbnails pan = new ButtonThumbnails(loadImage("pan.png"), width*.925, height*.30, wid, hite);
     pan.show();
     ToolTip panTip = new ToolTip("Pan tool", (width*.929)+(wid)/2, height*.35, wid, hite);
     panTip.makeText();
     HitBox panBox = new HitBox((width*.925)+(wid)/2, height*.35, wid, hite, width*.925, height*.30, null, null);
     panBox.makeHitBox();
+    */
     
     // row 5
-    
+    /*
     ButtonThumbnails save = new ButtonThumbnails(loadImage("save.png"), width*3/4, height*.40, wid, hite);
     save.show();
     ToolTip saveTip = new ToolTip("Save tool", (width*3/4)+(wid)/2, height*.45, wid, hite);
@@ -123,7 +124,7 @@ public class ButtonDisplay {
     printTip.makeText();
     HitBox printBox = new HitBox((width*.925)+(wid)/2, height*.45, wid, hite, width*.925, height*.40, printTool, null);
     printBox.makeHitBox();
-    
+    */
     if (currentTool != null) drawExtras();
   } 
   

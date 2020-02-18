@@ -104,4 +104,10 @@ public class polygon extends Object{
   public void setRadius(int r) {
     radius = r;
   }
+  
+  public Object duplicate() {
+    int newX = maxX()+20 >= width*0.75 ? 0 : x+20;
+    int newY = maxX()+20 >= width*0.75 ? 0 : y+20;
+    return new polygon(newX, newY, fill, Color, sides, radius);
+  }
 }

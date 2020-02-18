@@ -164,6 +164,7 @@ public class Text extends Object {
   String fontName;
   PFont font;
   String text;
+  Font fontType;
   
   public Text(int x, int y, int fontSize, color fill, Font font, String text) {
     super();
@@ -172,6 +173,7 @@ public class Text extends Object {
     this.size = fontSize;
     this.fill = fill;
     this.textHeight = size;
+    this.fontType = font;
     
     switch (font) {
        case Serif:
@@ -219,5 +221,11 @@ public class Text extends Object {
     for (int i = 0; i < text.length(); i++) {
       if (text.charAt(i) == '\n') textHeight += size*1.5;
     }
+  }
+  
+  public Object duplicate() {
+    int newX = maxX()+20 >= width*0.75 ? 0 : x+20;
+    int newY = maxX()+20 >= width*0.75 ? 0 : y+20;
+    return new Text(newX, newY, size, fill, fontType, text);
   }
 }

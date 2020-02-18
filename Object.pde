@@ -65,6 +65,8 @@ public abstract class Object {
     this.scale *= scale;
   }
   
+  public abstract Object duplicate();
+  
   public void prepColor() {    
     fill(fill);
     stroke(Color);

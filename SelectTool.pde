@@ -191,7 +191,9 @@ public class SelectTool extends Tool {
   }
   
   private void duplicate() {
-    
+    for (Object o : selected) {
+      thingsToDraw.add(o.duplicate());
+    }
   }
 }
 
@@ -220,6 +222,16 @@ public class group extends Object {
     for (Object o : group) {
       o.draw();
     }
+  }
+  
+  public Object duplicate() {
+    ArrayList<Object> retVal = new ArrayList<Object>();
+    
+    for (Object o : group) {
+      retVal.add(o.duplicate());
+    }
+    
+    return new group(retVal);
   }
   
   public void disband() {

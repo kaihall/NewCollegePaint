@@ -103,8 +103,9 @@ public class Line extends Object {
     maxY = max(startY,endY);
   }
   
-  //public void setFill() {}
-  
-  //public void setColor() {}
-  
+  public Object duplicate() {
+    int newX = maxX()+20 >= width*0.75 ? 0 : x+20;
+    int newY = maxX()+20 >= width*0.75 ? 0 : y+20;
+    return new Line(newX, newY, fill, Color, newX+(endX-startX), newY+(endY-startY));
+  }
 }

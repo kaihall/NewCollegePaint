@@ -107,6 +107,10 @@ public class pixel extends Object {
     maxY = y;
   }
   
+  public Object duplicate() {
+    return new pixel(x+1,y+1,Color);
+  }
+  
   public void drawShape() {
     set(x,y,Color);
   }
@@ -122,7 +126,7 @@ public class scribble extends Object {
     Color = stroke;
     
     xPoints = new ArrayList<Integer>();
-    yPoints =new ArrayList<Integer>();
+    yPoints = new ArrayList<Integer>();
     
     for (int i = 0; i < args.length; i++) {
       if (i%2 == 0) {
@@ -138,6 +142,30 @@ public class scribble extends Object {
     }
   }
   
+  public scribble(ArrayList<Integer> xPoints, ArrayList<Integer> yPoints, color stroke) {
+    super();
+    
+    Color = stroke;
+    
+    this.xPoints = new ArrayList<Integer>(xPoints);
+    this.yPoints = new ArrayList<Integer>(yPoints);
+    
+    minX = MAX_INT;
+    minY = MAX_INT;
+    maxX = MIN_INT;
+    maxY = MIN_INT;
+    
+    for (int x : xPoints) {
+      minX = min(minX,x);
+      maxX = max(maxX,x);
+    }
+    
+    for (int y : yPoints) {
+      minY = min(minY,y);
+      maxY = max(maxY,y);
+    }
+  }
+  
   public void drawShape(){
     noFill();
     beginShape();
@@ -147,5 +175,20 @@ public class scribble extends Object {
     }
     curveVertex(xPoints.get(xPoints.size()-1), yPoints.get(yPoints.size()-1));
     endShape();
+  }
+  
+  public Object duplicate() {
+    int newX = maxX()+20 >= width*0.75 ? 0 : 20;
+    int newY = maxX()+20 >= width*0.75 ? 0 : 20;
+    
+    ArrayList<Integer> newXPoints = new ArrayList<Integer>(xPoints);
+    ArrayList<Integer> newYPoints = new ArrayList<Integer>(yPoints);
+    
+    for (int i = 0; i < newXPoints.size(); i++) {
+      newXPoints.set(i,newXPoints.get(i)+newX);
+      newYPoints.set(i,newYPoints.get(i)+newY);
+    }
+    
+    return new scribble(newXPoints, newYPoints, Color);
   }
 }

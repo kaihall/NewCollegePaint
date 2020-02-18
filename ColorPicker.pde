@@ -15,6 +15,8 @@ public class ColorPicker extends Object{
     init();
   }
   
+  public Object duplicate() {return new pixel(-1,-1,0);}
+  
   private void init (){
     // draw color.
     int cw = w - 60;

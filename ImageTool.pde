@@ -77,11 +77,13 @@ public class ImageTool extends Tool {
 public class image extends Object {
   
   PImage image;
+  String fileName;
   int w, h;
   
   public image (String fileName, int x, int y) {
     super();
     this.image = loadImage(fileName);
+    this.fileName = fileName;
     this.x = x;
     this.y = y;
     this.w = image.width;
@@ -93,9 +95,9 @@ public class image extends Object {
     }
     
     minX = x;
-    maxX = x + w*scale;
+    maxX = x + w;
     minY = y;
-    minY = y + h*scale;
+    minY = y + h;
   }
   
   public void drawShape() {    
@@ -107,6 +109,11 @@ public class image extends Object {
     //minY = y + h*scale;
   }
   
+  public Object duplicate() {
+    int newX = maxX()+20 >= width*0.75 ? 0 : x+20;
+    int newY = maxX()+20 >= width*0.75 ? 0 : y+20;
+    return new image(fileName,newX, newY);
+  }
 }
 
 

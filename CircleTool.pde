@@ -61,11 +61,11 @@ public class CircleTool extends Tool {
    * Draws the most recent ellipse drawn by the user at a slight offset from the original, or a 50-radius black and white circle if no ellipses have been drawn yet
   */
   void drawLastCircle() {
-    int newX = last.getX()+20+last.getWidth() >= width*0.75 ? 0 : last.getX()+20;
-    int newY = last.getX()+20+last.getWidth() >= width*0.75 ? 0 : last.getY()+20;
-    ellipse addThis = new ellipse(newX,newY,last.getFill(),last.getStroke(),last.getWidth(),last.getHeight());
-    last = addThis;
-    thingsToDraw.add(addThis);
+    //int newX = last.getX()+20+last.getWidth() >= width*0.75 ? 0 : last.getX()+20;
+    //int newY = last.getX()+20+last.getWidth() >= width*0.75 ? 0 : last.getY()+20;
+    //ellipse addThis = new ellipse(newX,newY,last.getFill(),last.getStroke(),last.getWidth(),last.getHeight());
+    //last = addThis;
+    thingsToDraw.add(last.duplicate());
   }
   
   public void cleanUp() {
@@ -104,6 +104,12 @@ public class ellipse extends Object {
     minY = y - h;
     maxX = x + w;
     maxY = y + h;    
+  }
+  
+  public Object duplicate() {
+    int newX = x+20+w >= width*0.75 ? 0 : x+20;
+    int newY = x+20+w >= width*0.75 ? 0 : y+20;
+    return new ellipse(newX, newY, fill, Color, w, h);
   }
  
   public void drawShape() {
@@ -162,6 +168,12 @@ public class circle extends Object {
     minX = x - r/2;
     maxY = y + r/2;
     minY = y - r/2;
+  }
+  
+  public Object duplicate() {
+    int newX = maxX()+20 >= width*0.75 ? 0 : x+20;
+    int newY = maxX()+20 >= width*0.75 ? 0 : y+20;
+    return new circle(newX, newY, fill, Color, radius);
   }
   
   //public void setX(int x) {}

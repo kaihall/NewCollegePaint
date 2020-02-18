@@ -17,12 +17,12 @@ public class FileTool extends Tool {
   }
   
   public void load() {
-    int returnVal = fileChooser.showOpenDialog(new Container());
+    //int returnVal = fileChooser.showOpenDialog(new Container());
 
-    if (returnVal == JFileChooser.APPROVE_OPTION) {
-        File file = fileChooser.getSelectedFile();
+    //if (returnVal == JFileChooser.APPROVE_OPTION) {
+    //    File file = fileChooser.getSelectedFile();
         
-    }
+    //}
   }
   
   public void save(SaveType st) {

@@ -94,6 +94,12 @@ public class rectangle extends Object {
     rect(x, y, w, h);
   }
   
+  public Object duplicate() {
+    int newX = maxX()+20 >= width*0.75 ? 0 : x+20;
+    int newY = maxX()+20 >= width*0.75 ? 0 : y+20;
+    return new rectangle(newX, newY, fill, Color, w, h);
+  }
+  
   public void setWidth(int W) {
     w = W;
     maxX = max(x, x + w);

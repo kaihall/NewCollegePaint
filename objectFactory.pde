@@ -42,9 +42,6 @@ public class objectFactory {
        case ellipse:
          retVal = new ellipse(args[0], args[1], Fill, Color, args[2], args[3]);
          break;   
-       case triangle:
-         retVal = new triangle(args[0], args[1], Fill, Color, args[2], args[3], args[4], args[5]);
-         break; 
        case curve:
          retVal = new curve(args,Color);
          break;
@@ -60,6 +57,7 @@ public class objectFactory {
   }
 }
 
+/*
 public class triangle extends Object {
   int startX = 0;
   int startY = 0;
@@ -102,3 +100,4 @@ public class triangle extends Object {
   //public void setColor() {}
   
 }
+*/
