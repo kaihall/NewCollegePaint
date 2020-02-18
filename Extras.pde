@@ -128,8 +128,20 @@ public class Extras{
   /*****************DO THIS*****************/
   /*****************************************/
   void selectExtra(){
+    imageButton select = new imageButton("data/select.png", width*0.75 + width/12 - 5, height*0.575);
+    imageButton move = new imageButton("data/move.png", width*0.75 + width/8 + 5, height*0.575);
+    imageButton duplicate = new imageButton("data/duplicate.png", width*0.75 + width/12 - 5, height*0.65);
+    imageButton delete = new imageButton("data/delete.png", width*0.75 + width/8 + 5, height*0.65);
     
+    select.draw();
+    move.draw();
+    duplicate.draw();
+    delete.draw();
     
+    if (select.isClicked()) selectTool.setMode(SelectToolMode.Select);
+    if (move.isClicked()) selectTool.setMode(SelectToolMode.Move);
+    if (duplicate.isClicked()) selectTool.setMode(SelectToolMode.Duplicate);
+    if (delete.isClicked()) selectTool.setMode(SelectToolMode.Delete);
   }
   /*****************************************/
   /*****************************************/
