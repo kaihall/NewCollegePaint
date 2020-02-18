@@ -3,8 +3,6 @@ public class Extras{
   public Extras() {  }
   
   void pencilExtra(){
-    basicColorTiles(0,true);
-    
     imageButton pixel = new imageButton("data/pencilPixel.png", width*0.75 + width/12 - 5, height*0.65);
     imageButton scribble = new imageButton("data/pencilScribble.png", width*0.75 + width/8 + 5, height*0.65);
     
@@ -13,6 +11,8 @@ public class Extras{
     
     if (pixel.isClicked()) pencilTool.PIXELMODE = true;
     if (scribble.isClicked()) pencilTool.PIXELMODE = false;
+    
+    basicColorTiles(0,true);
   }
   
   void lineExtra(){
@@ -46,6 +46,10 @@ public class Extras{
   
   void rectangleExtra(){
     fill(0);
+    textSize(width/60);
+    text("Press 'R' to draw a rectangle!", width*.76, height*.85);
+    
+    fill(0);
     textSize(width/64);
     text("Outline", width*.835, height*.55);
     basicColorTiles(height/22,true);
@@ -54,30 +58,13 @@ public class Extras{
     textSize(width/64);
     text("Fill", width*.85, height*.65);
     basicColorTiles(height/7,false);
-    
-    fill(0);
-    textSize(width/60);
-    text("Press 'R' to draw a rectangle!", width*.76, height*.85);
   }
   
   void circleExtra(){
     fill(0);
-    textSize(width/64);
-    text("Outline", width*.835, height*.55);
-    basicColorTiles(height/22,true);
-    
-    fill(0);
-    textSize(width/64);
-    text("Fill", width*.85, height*.65);
-    basicColorTiles(height/7,false);
-    
-    fill(0);
     textSize(width/60);
     text("Press 'C' to draw a circle!", width*.76, height*.85);
     
-  }
-  
-  void polygonExtra(){
     fill(0);
     textSize(width/64);
     text("Outline", width*.835, height*.55);
@@ -87,7 +74,9 @@ public class Extras{
     textSize(width/64);
     text("Fill", width*.85, height*.65);
     basicColorTiles(height/7,false);
-    
+  }
+  
+  void polygonExtra(){
     fill(0);
     textSize(width/64);
     text("Sides:", width*.76, height*.75);
@@ -102,11 +91,19 @@ public class Extras{
     dec.draw();
     if (inc.isClicked()) polygonTool.setSides(polygonTool.sides+1);
     if (dec.isClicked()) polygonTool.setSides(polygonTool.sides-1);
+    
+    fill(0);
+    textSize(width/64);
+    text("Outline", width*.835, height*.55);
+    basicColorTiles(height/22,true);
+    
+    fill(0);
+    textSize(width/64);
+    text("Fill", width*.85, height*.65);
+    basicColorTiles(height/7,false);
   }
   
   void textExtra(){
-    basicColorTiles(0,false);
-
     ArrayList<fontButton> fontButtons = new ArrayList<fontButton>();
     fontButtons.add(new fontButton(width*.8, height*.65, height/22, height/22, color(255), Font.SansSerif));
     fontButtons.add(new fontButton(width*.8+(height/22)+10, height*.65, height/22, height/22, color(255), Font.Serif));
@@ -117,6 +114,8 @@ public class Extras{
       b.draw();
       if (b.isClicked()) textTool.setFont(b.getFont());
     }
+    
+    basicColorTiles(0,false);
   }
   
   void imageExtra(){
@@ -137,8 +136,6 @@ public class Extras{
   /*****************************************/
   
   void commentsExtra() {
-    basicColorTiles(0,true);
-    
     imageButton pencil = new imageButton("data/pencil.png", width*0.75 + width/12 - 5, height*0.65);
     imageButton text = new imageButton("data/text.png", width*0.75 + width/8 + 5, height*0.65);
     textButton cm = new textButton("Toggle Comments Mode", height*0.75);
@@ -146,6 +143,8 @@ public class Extras{
     pencil.draw();
     text.draw();
     cm.draw();
+    
+    basicColorTiles(0,true);
     
     if (pencil.isClicked()) commentsTool.setTool(CommentsToolMode.Pencil);
     if (text.isClicked()) commentsTool.setTool(CommentsToolMode.Text);
@@ -321,6 +320,7 @@ public class colorSelectorButton extends button {
   ColorPicker cp = new ColorPicker(width-width/4+width/300, height/2 + height/300, width/4, height/3, 0);
   boolean drawCP = false;
   int sinceLastPress=0;
+  boolean stroke = false;
   
   colorSelectorButton(float X1,float Y1, float X2, float Y2, color C) {
     super(X1, Y1, X2, Y2, C);
@@ -330,18 +330,21 @@ public class colorSelectorButton extends button {
     this.y2 = height/22.5;
   }
   
-  void setColor() {
+  void setColor(boolean stroke) {
     if (!drawCP) {
       drawCP = true;
       sinceLastPress=0;
     } else {
       if (cp.checkState() && sinceLastPress > inputDelay) {
         c = cp.getColor();
-        currentTool.setStroke(c);
+        if(stroke) currentTool.setStroke(c);
+        else currentTool.setFill(c);
         sinceLastPress=0;
         drawCP = false;
       }
     }
+    
+    this.stroke = stroke;
   }
   
   public void draw() {
@@ -352,7 +355,7 @@ public class colorSelectorButton extends button {
     textSize(width/40);
     text("*", x1+width/128, y1+height/540);
     if (drawCP) {
-      setColor();
+      setColor(stroke);
       fill(0);
       rectMode(CORNER);
       rect(width-width/4, height/2 + height/300, width/4, height/3);
