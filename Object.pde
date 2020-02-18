@@ -41,8 +41,28 @@ public abstract class Object {
     offsetY += y;
   }
   
-  public void rotate(float angle) {
+  public int minX() {
+    return minX + offsetX;
+  }
+  
+  public int maxX() {
+    return maxX + offsetX;
+  }
+  
+  public int minY() {
+    return minY + offsetY;
+  }
+  
+  public int maxY() {
+    return maxY + offsetY;
+  }
+  
+  public void turn(float angle) {
     this.angle += angle;
+  }
+  
+  public void rescale(float scale) {
+    this.scale *= scale;
   }
   
   public void prepColor() {    
@@ -55,6 +75,7 @@ public abstract class Object {
     pushMatrix();
     translate(offsetX,offsetY);
     rotate(angle);
+    scale(scale);
 
     prepColor();
     drawShape();
@@ -70,7 +91,7 @@ public abstract class Object {
   }
   
   public boolean underMouse() {
-    return mouseX >= minX && mouseX <= maxX && mouseY >= minY && mouseY <= maxY;
+    return mouseX >= minX+offsetX && mouseX <= maxX+offsetX && mouseY >= minY+offsetY && mouseY <= maxY+offsetY;
   }
   
   public abstract void drawShape();

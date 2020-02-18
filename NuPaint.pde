@@ -164,49 +164,35 @@ void keyPressed() {
     }
     
     else if (key == '1') {
-      switchTool(pencilTool, objects.pixel);
+      selectTool.setMode(SelectToolMode.Select);
     }
     
     else if (key == '2') {
-      switchTool(lineTool, objects.line);
+      selectTool.setMode(SelectToolMode.Move);
     }
     
     else if (key == '3') {
-      switchTool(curveTool, objects.curve);
+      selectTool.setMode(SelectToolMode.Rotate);
     }
     
     else if (key == '4') {
-      switchTool(rectTool, objects.rectangle);
+      selectTool.setMode(SelectToolMode.Resize);
     }
     
     else if (key == '5') {
-      switchTool(circleTool, objects.ellipse);
+      selectTool.setMode(SelectToolMode.Group);
     }
     
     else if (key == '6') {
-      switchTool(polygonTool, objects.polygon);
+      selectTool.setMode(SelectToolMode.Ungroup);
     }
     
     else if (key == '7') {
-      switchTool(textTool, objects.text);
+      selectTool.setMode(SelectToolMode.Delete);
     }
     
-    else if (key == '8') {
-      switchTool(imageTool, objects.image);
-      imageTool.uploadImage();
-    }
-    
-    else if (key == '9') {
-       if (commentsMode) commentsMode = false;
-       else commentsMode = true;
-    }
-    
-    else if (key == ',') {
-      commentsTool.setTool(CommentsToolMode.Pencil);
-    }
-    
-    else if (key == '.') {
-      commentsTool.setTool(CommentsToolMode.Text);
+    else if (key == 'd') {
+      selectTool.setMode(SelectToolMode.Duplicate);
     }
    
     else if (key == 'x') {

@@ -13,7 +13,7 @@ public class CurveTool extends Tool {
     xPoints = new ArrayList<Integer>();
     yPoints = new ArrayList<Integer>();
     drawing = false;
-    tightness = 15;
+    tightness = 10;
     sinceLastRead = 0;
   }  
   
@@ -87,7 +87,7 @@ public class curve extends Object {
     Color = stroke;
     
     xPoints = new ArrayList<Integer>();
-    yPoints =new ArrayList<Integer>();
+    yPoints = new ArrayList<Integer>();
     
     minX = MAX_INT;
     minY = MAX_INT;
@@ -96,7 +96,7 @@ public class curve extends Object {
     
     for (int i = 0; i < args.length; i++) {
       if (i%2 == 0) {
-        xPoints.add(args[i]);
+        xPoints.add(args[i] );
         minX = min(minX, args[i]);
         maxX = max(maxX, args[i]);
       }
@@ -106,6 +106,7 @@ public class curve extends Object {
         maxY = max(maxY, args[i]);
       }
     }
+    
   }
   
   public void drawShape(){

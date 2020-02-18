@@ -1,4 +1,4 @@
-public enum SelectToolMode { Select, Move, Rotate, Resize, Group, Ungroup, Delete }
+public enum SelectToolMode { Select, Move, Rotate, Resize, Group, Ungroup, Delete, Duplicate }
 
 public class SelectTool extends Tool {
   
@@ -6,12 +6,18 @@ public class SelectTool extends Tool {
   private ArrayList<Object> selected;
   private ArrayList<group> groups;
   private int sinceLastClick;
+  private boolean drawing;
+  private int lastX;
+  private int lastY;
   
   public SelectTool() {
     mode = SelectToolMode.Select;
     selected = new ArrayList<Object>();
     groups = new ArrayList<group>();
     sinceLastClick = 0;
+    drawing = false;
+    lastX = 0;
+    lastY = 0;
   }
   
   public void sketch() {
@@ -24,10 +30,12 @@ public class SelectTool extends Tool {
           moveSketch();
           break;
         case Rotate:
-          rotateSketch();
+          //rotateSketch();
+          mode = SelectToolMode.Select;
           break;
         case Resize:
-          resizeSketch();
+          //resizeSketch();
+          mode = SelectToolMode.Select;
           break;
         case Group:
           group();
@@ -41,6 +49,10 @@ public class SelectTool extends Tool {
           delete();
           mode = SelectToolMode.Select;
           break;
+        case Duplicate:
+          duplicate();
+          mode = SelectToolMode.Select;
+          break;
         default:
           mode = SelectToolMode.Select;
           break;
@@ -52,6 +64,7 @@ public class SelectTool extends Tool {
   
   public void setMode(SelectToolMode stm) {
     mode = stm;
+    drawing = false;
   }
   
   public void cleanUp() {
@@ -78,15 +91,78 @@ public class SelectTool extends Tool {
   }
   
   private void moveSketch() {
+    if (mouseX < width*0.75 && mousePressed) {
+      if (!drawing) {
+        drawing = true;
+        lastX = mouseX;
+        lastY = mouseY;
+      } else {
+        int moveX = mouseX - lastX;
+        int moveY = mouseY - lastY;
+        lastX = mouseX;
+        lastY = mouseY;
+        
+        for (Object o : selected) {
+          if (o.maxX() + moveX < width*0.748) o.move(moveX,0);
+          if (o.maxY() + moveY < height) o.move(0,moveY);
+        }
+      }
+    }
     
+    else if (drawing) {
+      drawing = false;
+      lastX = 0;
+      lastY = 0;
+    }
   }
   
   private void rotateSketch() {
+    if (mouseX < width*0.75 && mousePressed) {
+      if (!drawing) {
+        drawing = true;
+        lastX = mouseX;
+        lastY = mouseY;
+      } else {
+        int mult = (mouseX > lastX) ? -1 : 1;
+        lastX = mouseX;
+        lastY = mouseY;
+        
+        for (Object o : selected) {
+          o.turn(radians(mult));
+        }
+      }
+    }
     
+    else if (drawing) {
+      drawing = false;
+      lastX = 0;
+      lastY = 0;
+    }
   }
   
   private void resizeSketch() {
+    if (mouseX < width*0.75 && mousePressed) {
+      if (!drawing) {
+        drawing = true;
+        lastX = mouseX;
+        lastY = mouseY;
+      } else {
+        if (lastX == 0) lastX = 1;
+        float scale = mouseX/lastX;
+        lastX = mouseX;
+        lastY = mouseY;
+        
+        for (Object o : selected) {
+          if (o.maxX() * scale < width*0.748 && o.maxY() * scale < height) o.rescale(scale);
+        }
+      }
+    }
     
+    else if (drawing) {
+      drawing = false;
+      lastX = 0;
+      lastY = 0;
+    }
   }
   
   private void group() {
@@ -112,6 +188,10 @@ public class SelectTool extends Tool {
     for (Object o : selected) {
       thingsToDraw.remove(o);
     }
+  }
+  
+  private void duplicate() {
+    
   }
 }
 

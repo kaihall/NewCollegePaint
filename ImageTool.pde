@@ -100,7 +100,7 @@ public class image extends Object {
   
   public void drawShape() {    
     imageMode(CORNER);
-    image(image,x,y,w*scale,h*scale);
+    image(image,x,y,w,h);
     //minX = x;
     //maxX = x + w*scale;
     //minY = y;
